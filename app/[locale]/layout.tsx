@@ -3,6 +3,8 @@ import {notFound} from 'next/navigation';
 import {routing} from '@/i18n/routing';
 import "./globals.css";
 import Header from '../../components/Header';
+import { Toaster } from '@/components/ui/sonner';
+
 export default async function LocaleLayout({
   children,
   params
@@ -22,6 +24,7 @@ export default async function LocaleLayout({
            <NextIntlClientProvider>
           <Header />          
           {children}
+          <Toaster position="bottom-left" richColors />
           </NextIntlClientProvider>
       </body>
     </html>

@@ -14,6 +14,7 @@ const buttonVariants = cva(
         secondary: "bg-[rgb(var(--color-dark-card))] text-[rgb(var(--color-text-secondary))] hover:bg-[rgb(var(--color-dark-card-hover))]",
         ghost: "hover:bg-[rgb(var(--color-dark-card))] hover:text-[rgb(var(--color-text-primary))]",
         link: "text-[rgb(var(--color-accent-yellow))] underline-offset-4 hover:underline",
+        outline: "border border-[rgb(var(--color-dark-card-hover))] bg-transparent hover:bg-[rgb(var(--color-dark-card-hover))] hover:text-[rgb(var(--color-text-primary))]",
       },
       size: {
         default: "h-9 px-4 py-2",

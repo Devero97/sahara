@@ -4,14 +4,46 @@ import { motion } from 'framer-motion';
 import { useState, useEffect, Dispatch, SetStateAction, useRef } from 'react';
 import ServerPanel from './ServerPanel';
 import GuideContent from './GuideContent';
+import { toast } from "sonner";
+
+// ДАННЫЕ О НАГРАДАХ (Временно здесь, лучше вынести)
+// -------------------------------------------------
+const MILESTONE_STEPS: Record<string, string> = {
+  '2': 'section-1-complete', // Шаг 2 завершает раздел 1
+  '4': 'section-2-complete', // Шаг 4 завершает раздел 2
+};
+interface MilestoneReward {
+  id: string;
+  title: string; 
+  backgroundClass: string; 
+}
+const MILESTONE_REWARDS: Record<string, MilestoneReward> = {
+  'section-1-complete': {
+    id: 'section-1-complete',
+    title: 'Бронзовый Новичок',
+    backgroundClass: 'bg-gradient-to-br from-yellow-900/20 via-yellow-800/10 to-yellow-900/20 border border-yellow-700/30',
+  },
+  'section-2-complete': {
+    id: 'section-2-complete',
+    title: 'Серебряный Исследователь',
+    backgroundClass: 'bg-gradient-to-br from-slate-600/20 via-slate-500/10 to-slate-600/20 border border-slate-500/30',
+  },
+};
+// -------------------------------------------------
 
 export default function DiscordGuide() {
   const [currentStep, setCurrentStep] = useState<string>('0');
-  const [activeChannel, setActiveChannel] = useState<string>('1');
+  const [activeChannel, setActiveChannel] = useState<string | null>(null);
   const [highestStepReachedId, setHighestStepReachedId] = useState<string>('0');
   const [isNextOnCooldown, setIsNextOnCooldown] = useState<boolean>(false);
   const cooldownTimerRef = useRef<NodeJS.Timeout | null>(null);
   const [animationDirection, setAnimationDirection] = useState<number>(1); // 1: forward, -1: backward
+
+  // Состояние для отслеживания завершенных этапов (milestones)
+  const [completedMilestones, setCompletedMilestones] = useState<Set<string>>(new Set());
+  
+  // Состояние для чекпоинтов знаний
+  const [completedCheckpoints, setCompletedCheckpoints] = useState<Set<string>>(new Set());
 
   const COOLDOWN_DURATION = 1500;
   const LAST_GUIDE_STEP_ID = '5';
@@ -25,6 +57,8 @@ export default function DiscordGuide() {
   };
 
   useEffect(() => {
+    if (!activeChannel) return;
+    
     const isUnlocked = Number(highestStepReachedId) >= Number(activeChannel);
     
     if (isUnlocked && currentStep !== LAST_GUIDE_STEP_ID) { 
@@ -32,8 +66,6 @@ export default function DiscordGuide() {
           setCurrentStep(channelToStepMap[activeChannel]);
       }
     } else if (currentStep !== '0') {
-        // Если активный канал заблокирован, а мы не на приветствии?
-        // Возможно, стоит перейти на highestStepReachedId?
         const highestAvailableStep = String(highestStepReachedId);
         if (currentStep !== highestAvailableStep) {
             //setCurrentStep(highestAvailableStep);
@@ -60,6 +92,23 @@ export default function DiscordGuide() {
     // Обновляем highestStepReachedId ЗДЕСЬ по общему правилу
     if (isNewHighest) {
         setHighestStepReachedId(stepId);
+
+        // Проверяем, завершает ли этот шаг какой-либо этап
+        const milestoneId = MILESTONE_STEPS[stepId]; // Используем MILESTONE_STEPS
+        if (milestoneId && !completedMilestones.has(milestoneId)) {
+          console.log("Milestone reached:", milestoneId);
+          const newMilestones = new Set(completedMilestones).add(milestoneId);
+          setCompletedMilestones(newMilestones);
+          
+          // Показываем уведомление о достижении
+          const reward = MILESTONE_REWARDS[milestoneId];
+          if (reward) {
+            toast.success(`Этап пройден: ${reward.title}!`, {
+              description: `Фон гайда обновлен.`, // Можно добавить описание
+              duration: 4000, // Длительность показа в мс
+            });
+          }
+        }
     }
 
     // Обновляем текущий шаг
@@ -116,6 +165,13 @@ export default function DiscordGuide() {
     // console.log("Animation complete for step:", stepId);
   };
 
+  // Функция для отметки чекпоинта как пройденного
+  const markCheckpointComplete = (checkpointId: string) => {
+    setCompletedCheckpoints(prev => new Set(prev).add(checkpointId));
+    // Можно добавить toast или другой фидбек
+    toast.info(`Чекпоинт "${checkpointId}" пройден!`);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -127,6 +183,9 @@ export default function DiscordGuide() {
         activeChannel={activeChannel} 
         onChannelChange={handleChannelChange} 
         highestStepReachedId={highestStepReachedId}
+        // Передаем состояние и обработчик для чекпоинтов
+        completedCheckpoints={completedCheckpoints}
+        onCheckpointComplete={markCheckpointComplete}
       />
       <motion.div
         initial={{ opacity: 0, x: 20 }}
@@ -140,6 +199,7 @@ export default function DiscordGuide() {
           onStepAnimationComplete={handleStepAnimationComplete}
           isNextOnCooldown={isNextOnCooldown}
           animationDirection={animationDirection}
+          completedMilestones={completedMilestones} // Оставляем для наград
         />
       </motion.div>
     </motion.div>
