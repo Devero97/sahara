@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef, Dispatch, SetStateAction, useCallback } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import { CooldownButton } from '@/components/ui/CooldownButton';
 import { Progress } from '@/components/ui/progress';
 import CodeExample from '@/components/CodeExample';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -104,7 +105,7 @@ function GuideContentComponent({
   const tGuide = useTranslations('GuideContent');
   const tSteps = useTranslations('GuideContent.steps');
   const tWelcome = useTranslations('WelcomeStep');
-
+  
   const totalVisibleSteps = LAST_VISIBLE_PROGRESS_STEP;
 
   const handleNext = useCallback(() => {
@@ -160,26 +161,21 @@ function GuideContentComponent({
   }
 
   return (
-    <div className="flex-1 h-full rounded-3xl bg-[rgb(var(--color-dark-card))] p-8 flex flex-col">
-      {/* Оборачиваем прогресс-бар в motion.div и убираем условный рендер */}
-      <motion.div
-        className="mb-8 max-w-4xl mx-auto w-full"
-        variants={navAndProgressVariants}
-        animate={isCompletionStep ? 'hidden' : 'visible'}
-        initial={false}
-        custom={animationDirection}
-      >
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-[rgb(var(--color-text-secondary))] mr-auto">
-            {/* Убираем isGuideStep && - анимация родителя скроет текст на последнем шаге */}
+    <div className="flex-1 h-full rounded-3xl bg-[rgb(var(--color-dark-card))] p-8 flex flex-col relative">
+      {/* Индикатор шага, абсолютно позиционированный справа */}
+      {isGuideStep && (
+        <div 
+          className="absolute top-4 right-4 bg-[rgb(var(--color-dark-base))] py-2 px-4 rounded-full"
+          style={{ zIndex: 10 }}
+        >
+          <span className="text-[rgb(var(--color-text-secondary))] text-sm font-medium">
             {tGuide('stepLabel', { currentStep: currentStep, totalSteps: totalVisibleSteps })}
           </span>
         </div>
-        <Progress value={progress} />
-      </motion.div>
+      )}
 
       {/* Убираем условный mb-8 отсюда, т.к. блок навигации всегда есть */}
-      <div className={`flex-grow  ${isCompletionStep ? '' : ''}`}>
+      <div className={`flex-grow mt-4 ${isCompletionStep ? '' : ''}`}>
         <AnimatePresence mode="wait" custom={animationDirection}>
           <motion.div
             key={currentStep}
@@ -292,15 +288,16 @@ function GuideContentComponent({
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button
+              <CooldownButton
                 size="lg"
                 variant="default"
                 onClick={handleNext}
-                disabled={isNextOnCooldown}
-                className="relative overflow-hidden"
+                disabled={currentStep === '1' ? false : undefined}
+                isOnCooldown={isNextOnCooldown && currentStep !== '1'}
+                cooldownDuration={COOLDOWN_DURATION}
               >
-                <span className="relative z-10">{tGuide('nextButton')}</span>
-              </Button>
+                {tGuide('nextButton')}
+              </CooldownButton>
             </TooltipTrigger>
             <TooltipContent>
               <p>{tGuide('nextTooltip')}</p>

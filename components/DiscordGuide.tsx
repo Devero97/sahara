@@ -71,8 +71,10 @@ export default function DiscordGuide() {
         setActiveChannel(nextChannelId);
     }
 
-    // Обрабатываем кулдаун по общему правилу для НОВОГО максимального шага
-    if (isForwardStep && isNewHighest) { // Убрано && stepId !== LAST_GUIDE_STEP_ID
+    // Обрабатываем кулдаун по общему правилу для НОВОГО максимального шага,
+    // но НЕ для перехода на последний шаг
+    if (isForwardStep && isNewHighest && stepId !== '1' && stepId !== LAST_GUIDE_STEP_ID) {
+      console.log("SETTING COOLDOWN: true");
       setIsNextOnCooldown(true);
       if (cooldownTimerRef.current) {
         clearTimeout(cooldownTimerRef.current);
