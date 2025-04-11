@@ -1,0 +1,91 @@
+{
+  "HomePage": {
+    "title": "Hello world!",
+    "about": "Go to the about page"
+  },
+  "Header": {
+    "nav": {
+      "quizzes": "Quizzes"
+    }
+  },
+  "Index": {},
+  "WelcomeStep": {
+    "greeting": "Hi! I'll help you get started here.",
+    "placeholder": "[Cute fox will be here!]",
+    "startButton": "Start Guide"
+  },
+  "GuideContent": {
+    "stepLabel": "Step {currentStep} of {totalSteps}",
+    "skipButton": "Skip Guide",
+    "skipTooltip": "Skip all steps and go to the last one",
+    "tipsTitle": "Tips:",
+    "backButton": "Back",
+    "backTooltip": "Go back to the previous step",
+    "nextButton": "Next",
+    "nextTooltip": "Go to the next step",
+    "steps": {
+      "1": {
+        "title": "Welcome to Sahara AI",
+        "description": "This guide will help you get started on our Discord server. Let's start with the basics!",
+        "tips": [
+          "Familiarize yourself with the server rules",
+          "Choose the channels that interest you"
+        ],
+        "codeDescription": "Example code for setting up a Discord bot"
+      },
+      "2": {
+        "title": "Server Rules",
+        "description": "Please read the main rules of our community.",
+        "tips": [
+          "Be polite to other members",
+          "Follow the channel topics"
+        ]
+      },
+      "3": {
+        "title": "Voice Channels",
+        "description": "Learn how to use voice channels on our server.",
+        "tips": [
+          "Check your microphone settings",
+          "Use push-to-talk for convenience"
+        ],
+        "codeDescription": "Example code for working with voice channels"
+      },
+      "4": {
+        "title": "Music and Entertainment",
+        "description": "How to use music bots and other entertainment features.",
+        "tips": [
+          "Learn the music bot commands",
+          "Adjust the sound quality"
+        ],
+        "codeDescription": "Example command for a music bot"
+      },
+      "5": {
+        "title": "Guide Completed!",
+        "description": "Congratulations! You've learned the basics of our server. Now you're ready to explore all the features. Join us on social media!",
+        "placeholder": "[Fox is celebrating!]",
+        "returnButton": "Return to Guide",
+        "socialDiscord": "Discord",
+        "socialWebsite": "Website",
+        "socialTwitter": "Twitter"
+      }
+    }
+  },
+  "CodeExample": {
+    "copyButton": "Copy",
+    "copiedButton": "Copied!",
+    "copyTooltip": "Click to copy the code"
+  },
+  "ServerPanel": {
+    "categories": {
+      "1": "Main Channels",
+      "2": "Voice Channels"
+    },
+    "channels": {
+      "1": "general",
+      "2": "rules",
+      "3": "General",
+      "4": "Music",
+      "5": "Summary"
+    }
+  }
+}

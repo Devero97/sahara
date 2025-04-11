@@ -1,0 +1,37 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@layer base {
+  :root {
+    /* Base Colors - Dark Theme */
+    --color-dark-base: 34 44 45;        /* #222C2D */
+    --color-dark-card: 45 56 57;        /* #2D3839 */
+    --color-dark-card-hover: 58 74 75;  /* #3A4A4B */
+
+    /* Accent Colors */
+    --color-accent-yellow: 247 255 152; /* #F7FF98 */
+    --color-accent-yellow-hover: 255 252 209; /* #FFFCD1 */
+
+    /* Text Colors */
+    --color-text-primary: 255 255 255;  /* #FFFFFF */
+    --color-text-secondary: 232 236 236; /* #E8ECEC */
+    --color-text-muted: 150 171 172;    /* #96ABAC */
+
+    /* UI Elements */
+    --color-button-primary: var(--color-accent-yellow);
+    --color-button-primary-text: var(--color-dark-base);
+    --color-button-secondary: transparent;
+  }
+}
+@layer base {
+  .bg-background {
+    background-color: rgb(var(--color-dark-base));
+  }
+  .bg-secondary {
+    background-color: rgb(var(--color-dark-card-hover));
+  }
+  .text-primary{
+    color: rgb(var(--color-text-primary));
+  }
+  /* Аналогично для остальных цветов */
+}
