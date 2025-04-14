@@ -15,5 +15,5 @@ export const middleware = createMiddleware({
 });
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|logo.svg|pattern.png).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|logo.svg|pattern.png|body.svg|head.svg|hand1.svg|hand2.svg|foods.svg).*)"],
 };

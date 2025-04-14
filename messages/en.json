@@ -9,66 +9,186 @@
     }
   },
   "Index": {},
-  "WelcomeStep": {
-    "greeting": "Hi! I'll help you get started here.",
-    "placeholder": "[Cute fox will be here!]",
-    "startButton": "Start Guide"
+  "GuideNav": {
+    "cat_intro": "Introduction",
+    "m1_nav": "First Steps",
+    "m2_nav": "Important Channels",
+    "m3_nav": "Role Selection",
+
+    "cat_progress": "Progression",
+    "m4_nav": "XP System",
+    "m5_nav": "Oasis Points (OP)",
+    "m6_nav": "Shop & Commands",
+
+    "cat_activities": "Activities",
+    "m7_nav": "Events",
+    "m8_nav": "Content & Creativity",
+    "m9_nav": "Communication",
+    "m10_nav": "Testnet Access (WL)",
+
+    "cat_info": "Information",
+    "m11_nav": "Help & Support",
+    "m12_nav": "News Sources",
+    "m13_nav": "Structure Overview"
   },
   "GuideContent": {
-    "stepLabel": "Step {currentStep} of {totalSteps}",
-    "skipButton": "Skip Guide",
-    "skipTooltip": "Skip all steps and go to the last one",
-    "tipsTitle": "Tips:",
-    "backButton": "Back",
-    "backTooltip": "Go back to the previous step",
-    "nextButton": "Next",
-    "nextTooltip": "Go to the next step",
-    "steps": {
-      "1": {
-        "title": "Welcome to Sahara AI",
-        "description": "This guide will help you get started on our Discord server. Let's start with the basics!",
-        "tips": [
-          "Familiarize yourself with the server rules",
-          "Choose the channels that interest you"
-        ],
-        "codeDescription": "Example code for setting up a Discord bot"
-      },
-      "2": {
-        "title": "Server Rules",
-        "description": "Please read the main rules of our community.",
-        "tips": [
-          "Be polite to other members",
-          "Follow the channel topics"
-        ]
-      },
-      "3": {
-        "title": "Voice Channels",
-        "description": "Learn how to use voice channels on our server.",
-        "tips": [
-          "Check your microphone settings",
-          "Use push-to-talk for convenience"
-        ],
-        "codeDescription": "Example code for working with voice channels"
-      },
-      "4": {
-        "title": "Music and Entertainment",
-        "description": "How to use music bots and other entertainment features.",
-        "tips": [
-          "Learn the music bot commands",
-          "Adjust the sound quality"
-        ],
-        "codeDescription": "Example command for a music bot"
-      },
-      "5": {
-        "title": "Guide Completed!",
-        "description": "Congratulations! You've learned the basics of our server. Now you're ready to explore all the features. Join us on social media!",
-        "placeholder": "[Fox is celebrating!]",
-        "returnButton": "Return to Guide",
-        "socialDiscord": "Discord",
-        "socialWebsite": "Website",
-        "socialTwitter": "Twitter"
-      }
-    }
+    "tips_title": "Tips:",
+    "back_button": "Back",
+    "next_button": "Next",
+    "prev_module_button": "Previous Module",
+    "next_module_button": "Next Module",
+    "checkpoint_status_title": "Checkpoint Status",
+    "completion_message": "🎉 Congratulations! You have completed the guide! 🎉",
+
+    "m1_title": "Welcome to Sahara AI Discord!",
+    "m1_desc": "Welcome! The Sahara AI Discord server is a crucial place to participate in the project's life, earn rewards, and access exclusive information. This guide will help you get started quickly.",
+    "m1_add_text": "After joining and verifying, you'll receive the Visitor role. This is a temporary role for bot checks, limiting access.\n\nYour first goal is to get the General Member role for full access. Here's how:\n• Chat: Actively participate in the #visitor-general channel.\n• Attend Events: Join events in #Oasis Stage. You can often get the role quickly there.\n• Create: Make memes in #meme and art in #fan-art.\n• Read & React: Like posts in #announcements.\n• Be Seen: Type gm every morning in the #gm channel.\nAny of these activities increase your chances!",
+    "m1_img_alt": "Diagram: Path from Visitor to General Member",
+    "m1_tip1": "The main chat for newcomers is #visitor-general.",
+    "m1_tip2": "Don't miss events in #Oasis Stage.",
+    "m1_tip3": "Liking announcements counts as activity!",
+    "m1_tip4": "Type gm in #gm every morning.",
+
+    "m2_title": "Important Information Channels",
+    "m2_desc": "To use the server effectively, it's important to know the basic rules and information channels.",
+    "m2_add_text": "• #announcements: Most important announcements. Liking within 4 hours = 10 OP!\n• #minor-announcements: Less critical announcements.\n• #community-bible: Must-read! Rules, links, role descriptions, roadmap.\n• #scam-safety: Information about scammers. Be careful!",
+    "m2_img_alt": "Information Channels",
+    "m2_tip1": "Study #community-bible thoroughly.",
+    "m2_tip2": "Like fresh posts in #announcements for OP.",
+    "m2_tip3": "Remember #scam-safety.",
+    "m2_tip4": "#community-bible is your main reference.",
+
+    "m3_title": "Selecting Additional Roles",
+    "m3_desc": "Once you have the General Member role, go to #community-bible and select the roles that interest you by reacting to the corresponding message. This grants access to additional channels and activities.",
+    "m3_add_text": "Available roles to select:\n• Web3 / AI: Access to #ai-web3-news & #web3-ai-news-finds.\n• Twitter Degen: Access to #twitter-raids (Twitter tasks).\n• Gamer: Game notifications.\n• Giveaways: Participate in giveaways.\n• Quizzes: Participate in quizzes.\n• Russian (and others): Access to regional chats.",
+    "m3_img_alt": "Role selection in Community Bible",
+    "m3_tip1": "Choose roles that match your interests.",
+    "m3_tip2": "The Twitter Degen role is needed for earning OP in Twitter raids.",
+    "m3_tip3": "A language role grants access to your region's chat.",
+
+    "m4_title": "Experience (XP) System and Activity Roles",
+    "m4_desc": "XP is needed to obtain the main activity roles: Bronze (5k XP), Silver (55k XP), Gold (300k XP), Platinum (555k XP).",
+    "m4_add_text": "How to earn XP:\n• Chat messages (#general, #russian, etc.): 15 XP per minute (counts once/min).\n• Event participation (#Oasis Stage: prizes & bonuses).\n• Content creation (#memes, #community-tweets).\n\nHow to check XP: /rank command in #op-commands.",
+    "m4_img_alt": "XP System",
+    "m4_tip1": "Chat regularly, but don't spam.",
+    "m4_tip2": "Creating memes and tweets also earns XP.",
+    "m4_tip3": "Use /rank to track your progress.",
+
+    "m5_title": "Oasis Points (OP): Server Currency",
+    "m5_desc": "Oasis Points (OP) are the server's internal currency, which can be earned and spent on various rewards.",
+    "m5_add_text": "Main ways to earn OP:\n• Daily bonus: /claim daily in #op-commands (100 OP/24h).\n• Twitter Raids: Complete tasks in #twitter-raids (~200 OP). Link Twitter: /set twitter [username].\n• Announcement Likes: Like in #announcements within 4 hours (10 OP).\n• Events: Prizes and bonuses on #Oasis Stage.\n• Telegram Quizzes: Participate in quizzes on Sahara AI Telegram.",
+    "m5_img_alt": "Oasis Points",
+    "m5_tip1": "The easiest way is /claim daily.",
+    "m5_tip2": "Twitter raids are the most profitable way.",
+    "m5_tip3": "Don't miss announcements and events.",
+    "m5_tip4": "Check your earning logs in #op-logs.",
+
+    "m6_title": "Shop (#op-shop) and Useful Commands",
+    "m6_desc": "Earned OP can be spent in the #op-shop on roles, XP, and other rewards. The #op-commands channel is used to interact with the Engage bot.",
+    "m6_code_desc": "Useful commands in #op-commands",
+    "m6_img_alt": "OP Shop and Commands",
+    "m6_tip1": "Check the items available in #op-shop.",
+    "m6_tip2": "Use /rank and /leaderboard to check your status.",
+    "m6_tip3": "Remember to link your Twitter via /set twitter.",
+
+    "m7_title": "Events: AMAs, Games, Music",
+    "m7_desc": "Various events are regularly held in the server's voice channels.",
+    "m7_add_text": "Main event channels:\n• #events-announcements: Announcements of upcoming events.\n• #events-schedule: Weekly schedule.\n• #Oasis Stage: Main stage for AMAs, games, contests. Participate and win XP/OP!\n• #Music and Chill: Joint music listening sessions.",
+    "m7_img_alt": "Events on the server",
+    "m7_tip1": "Follow the schedule in #events-schedule.",
+    "m7_tip2": "Participating in events is a great way to earn XP and OP.",
+    "m7_tip3": "Attend AMAs to stay updated and win WL.",
+
+    "m8_title": "Content Creation and Creativity",
+    "m8_desc": "Share your creativity related to Sahara AI with the community! The best works may be rewarded.",
+    "m8_add_text": "Content channels:\n• #community-tweets: Share links to your tweets about the project.\n• #meme: Post memes.\n• #artist-content: Channel for members with the Content Creator/Artist role.\n• #generative-prompts: Try the AI image generator.",
+    "m8_img_alt": "Content Creation",
+    "m8_tip1": "Quality content can earn you a role or even WL.",
+    "m8_tip2": "Don't hesitate to share your work.",
+    "m8_tip3": "Memes are also an important part of the community!",
+
+    "m9_title": "Communication Channels",
+    "m9_desc": "Communication is key to earning XP and integrating into the community. Choose the right channel.",
+    "m9_add_text": "Main chats:\n• #general: Main server chat (English).\n• #russian (and others): Regional chats (role required).",
+    "m9_tip1": "Follow the rules and be polite.",
+    "m9_tip2": "Ask questions if something is unclear.",
+    "m9_tip3": "Remember: 1 message per minute earns 15 XP.",
+
+    "m10_title": "How to Get Testnet Access (WL)",
+    "m10_desc": "Participating in the Sahara AI closed testnet is crucial. You can get access (Whitelist, WL) not only via the form but also on the Discord server.",
+    "m10_add_text": "Ways to get WL on the server:\n• AMAs and Events: Follow #events-announcements, WL is often raffled.\n• Content: Create quality content, post on Twitter, and share in #community-tweets / #meme.\n• Regional Contests: Keep an eye on activities in your regional chat.",
+    "m10_img_alt": "Testnet Access (WL)",
+    "m10_tip1": "Attend AMAs - it's a real chance.",
+    "m10_tip2": "Your content might be noticed and rewarded.",
+    "m10_tip3": "Don't miss contests in regional chats.",
+
+    "m11_title": "Help, Support, and Security",
+    "m11_desc": "If you encounter problems, have questions, or notice violations, use the appropriate channels.",
+    "m11_add_text": "Support and security channels:\n• #open-a-ticket: For serious issues, create a ticket for the administration.\n• #report-scams-and-spams: Report spammers/scammers.\n• #scam-safety: Learn about current scam types.",
+    "m11_tip1": "Use tickets only for important, unresolved issues.",
+    "m11_tip2": "Help maintain order - report violations.",
+
+    "m12_title": "News Sources",
+    "m12_desc": "Stay updated on the latest project and industry news.",
+    "m12_add_text": "News channels:\n• #ai-web3-news: Official news from the Sahara AI team.\n• #web3-ai-news-finds: News found by community members (AI/Web3 role required).",
+    "m12_tip1": "Check #ai-web3-news for official information.",
+    "m12_tip2": "Share interesting news in #web3-ai-news-finds (if you have the role).",
+
+    "m13_title": "Summary: Server Structure Overview",
+    "m13_desc": "Brief overview of the main categories and channels on the server:\n\n**-- Official information --**\n#announcements, #minor-announcements, #community-bible, #scam-safety, #ai-web3-news\n\n**-- General --**\n#general, #gm\n\n**-- Community Events --**\n#events-announcements, #events-schedule, #Oasis Stage, #Music and Chill\n\n**-- Community Share --**\n#artist-content, #community-tweets, #meme, #generative-prompts, #web3-ai-news-finds\n\n**-- Oasis points bazaar (OP) --**\n#op-shop, #how-to-earn-op-xp, #op-commands, #twitter-raids, #op-logs\n\n**-- Other --**\n#open-a-ticket, #report-scams-and-spams\n\n**-- Add. Branches --**\n#russian (and other languages)"
+  },
+  "Checkpoints": {
+    "correct": "Correct!",
+    "incorrect": "Incorrect.",
+
+    "cp1_q": "What is the most reliable way to *quickly* get the General Member role as a Visitor?",
+    "cp1_o1_text": "Just type gm every day.",
+    "cp1_o2_text": "Actively participate in events on #Oasis Stage.",
+    "cp1_o3_text": "Only read announcements.",
+    "cp1_o4_text": "Wait for an automatic promotion.",
+    "cp1_exp": "Participating in events on #Oasis Stage often allows you to get the role directly from the hosts.",
+
+    "cp2_q": "How much OP can you get for liking a new post in #announcements?",
+    "cp2_o1_text": "100 OP",
+    "cp2_o2_text": "0 OP, it's just for information.",
+    "cp2_o3_text": "10 OP, if liked within the first 4 hours.",
+    "cp2_o4_text": "50 OP for any like.",
+    "cp2_exp": "Liking an announcement within the first 4 hours of posting earns 10 OP.",
+
+    "cp3_q": "Which command should you use in #op-commands to get the daily 100 OP?",
+    "cp3_o1_text": "/rank",
+    "cp3_o2_text": "/leaderboard",
+    "cp3_o3_text": "/daily",
+    "cp3_o4_text": "/claim daily",
+    "cp3_exp": "The /claim daily command allows you to receive 100 OP once every 24 hours.",
+
+    "cp4_q": "Which channel should you post links to your tweets about Sahara AI in for moderators to notice and potentially reward?",
+    "cp4_o1_text": "#general",
+    "cp4_o2_text": "#artist-content",
+    "cp4_o3_text": "#community-tweets",
+    "cp4_o4_text": "#events-announcements",
+    "cp4_exp": "The #community-tweets channel is designated for sharing links to Twitter content.",
+
+    "cp5_q": "Which of the following is NOT a chance to get WL on the Discord server?",
+    "cp5_o1_text": "Participating in AMAs on #Oasis Stage.",
+    "cp5_o2_text": "Winning a regional contest.",
+    "cp5_o3_text": "Buying WL with Oasis Points in #op-shop.",
+    "cp5_o4_text": "Creating outstanding content and posting in #community-tweets.",
+    "cp5_exp": "WL can be won at events, for content, or in contests, but it is not sold for OP in the shop.",
+
+    "cp6_q": "Which channel is the main one for English communication on the server?",
+    "cp6_o1_text": "#russian",
+    "cp6_o2_text": "#visitor-general",
+    "cp6_o3_text": "#general",
+    "cp6_o4_text": "#community-bible",
+    "cp6_exp": "#general is the server's main chat for English communication.",
+
+    "cp7_q": "Where should you go if you have a serious issue that cannot be resolved in chat or by moderators?",
+    "cp7_o1_text": "Send a direct message to an admin.",
+    "cp7_o2_text": "Create a post in #general.",
+    "cp7_o3_text": "Open a ticket in the #open-a-ticket channel.",
+    "cp7_o4_text": "Report it in #report-scams-and-spams.",
+    "cp7_exp": "For official requests to the administration regarding serious issues, the ticket system in #open-a-ticket is used."
   },
   "CodeExample": {
     "copyButton": "Copy",
@@ -78,7 +198,8 @@
   "ServerPanel": {
     "categories": {
       "1": "Main Channels",
-      "2": "Voice Channels"
+      "2": "Voice Channels",
+      "3": "Completion"
     },
     "channels": {
       "1": "general",

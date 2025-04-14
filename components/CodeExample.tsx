@@ -7,14 +7,16 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { useTranslations } from 'next-intl';
+import { cn } from "@/lib/utils";
 
 interface CodeExampleProps {
   code: string;
   language?: string;
   description?: string;
+  className?: string;
 }
 
-export default function CodeExample({ code, language = 'typescript', description }: CodeExampleProps) {
+export default function CodeExample({ code, language = 'typescript', description, className }: CodeExampleProps) {
   const t = useTranslations('CodeExample');
   const [isCopied, setIsCopied] = useState(false);
 
@@ -33,7 +35,7 @@ export default function CodeExample({ code, language = 'typescript', description
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="bg-[rgb(var(--color-dark-card))] rounded-lg overflow-hidden my-4"
+      className={cn("bg-[rgb(var(--color-dark-card))] rounded-lg overflow-hidden my-4", className)}
     >
       {description && (
         <div className="p-4 border-b border-[rgb(var(--color-dark-card-hover))]">
@@ -48,7 +50,6 @@ export default function CodeExample({ code, language = 'typescript', description
             margin: 0,
             padding: '1rem',
             background: 'rgb(var(--color-dark-base))',
-            borderRadius: '0.5rem',
           }}
         >
           {code}

@@ -20,7 +20,7 @@ export default async function LocaleLayout({
  
   return (
     <html lang={locale}>
-      <body className={`bg-background text-primary  bg-top bg-no-repeat flex mx-auto max-w-7xl flex-col `}>
+      <body className={`bg-background text-primary  bg-top bg-no-repeat flex mx-auto max-w-7xl flex-col  `}>
            <NextIntlClientProvider>
           <Header />          
           {children}

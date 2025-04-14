@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@theme {
+  --bg-pattern: url("/pattern.png");
+}
+
 @layer base {
   :root {
     /* Base Colors - Dark Theme */
@@ -34,4 +38,8 @@
     color: rgb(var(--color-text-primary));
   }
   /* Аналогично для остальных цветов */
+}
+
+.pattern {
+  @apply bg-[url('/pattern.png')] bg-top bg-no-repeat;
 }
