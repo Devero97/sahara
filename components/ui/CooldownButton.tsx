@@ -6,14 +6,12 @@ import { cn } from "@/lib/utils";
 interface CooldownButtonProps extends ButtonProps {
   isOnCooldown?: boolean;
   cooldownDuration?: number;
-  cooldownColor?: string;
 }
 
 const CooldownButton = React.forwardRef<HTMLButtonElement, CooldownButtonProps>(
   ({ 
     isOnCooldown = false, 
     cooldownDuration = 1500, 
-    cooldownColor = "rgb(var(--color-accent-yellow))",
     children,
     disabled,
     variant,

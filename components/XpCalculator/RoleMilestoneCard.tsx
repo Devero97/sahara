@@ -8,7 +8,7 @@ interface RoleMilestoneCardProps {
   progress: number;
   messagesNeeded: number;
   iconPath: string;
-  t: (key: string, params?: Record<string, any>) => string;
+  t: (key: string, params?: Record<string, unknown>) => string;
 }
 
 export const RoleMilestoneCard = ({
@@ -19,7 +19,11 @@ export const RoleMilestoneCard = ({
   messagesNeeded,
   iconPath,
   t
-}: RoleMilestoneCardProps) => (
+}: RoleMilestoneCardProps) => {
+  // Получение локализованного названия роли напрямую через функцию перевода
+  const localizedRole = t(`calculator.roles.${role.toLowerCase()}`);
+
+  return (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
@@ -30,7 +34,7 @@ export const RoleMilestoneCard = ({
       <div className="mr-4 flex items-center">
         <Image
           src={iconPath}
-          alt={role}
+            alt={localizedRole || role}
           width={56}
           height={56}
           className="w-12 h-12"
@@ -38,7 +42,7 @@ export const RoleMilestoneCard = ({
       </div>
       <div>
         <div className="font-bold text-white">
-          {t("calculator.to_next_level", { role: t(`calculator.roles.${role.toLowerCase()}`) || role, level })}
+            {t("calculator.to_next_level", { role: localizedRole, level })}
         </div>
         <div className="font-bold" style={{ color }}>
           {t("calculator.messages_count", { count: messagesNeeded.toLocaleString() })}
@@ -56,4 +60,6 @@ export const RoleMilestoneCard = ({
     </div>
   </motion.div>
 );
+};
+
 export default RoleMilestoneCard;

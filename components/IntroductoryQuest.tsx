@@ -12,48 +12,48 @@ interface IntroductoryQuestProps {
   onComplete: () => void; // Функция для вызова при завершении квеста
 }
 
-// Определим шаги квеста (пока без переводов для простоты)
+// Определим шаги квеста с ключами локализации
 const introSteps = [
   {
     id: 1,
-    title: "Добро пожаловать!",
-    description: "Привет! Я Bitsy, гид по сообществу Sahara AI. Если ты новичок, я покажу, как получить полный доступ к серверу. А если уже освоился — жми «Пропустить» и изучай продвинутые возможности!",
+    titleKey: "welcome_title",
+    descriptionKey: "welcome_description",
     isWelcome: true, // Добавляем флаг, что это первый приветственный шаг
   },
   {
     id: 2,
-    title: "Шаг 1: Пройди верификацию",
-    description: "Зайди в канал #verify на сервере.\nНажми кнопку Verify → прочитай правила → Continue → пройди капчу (выбери нужные цифры).",
+    titleKey: "step1_title",
+    descriptionKey: "step1_description",
     isVerification: true, // Добавляем флаг для шага верификации
   },
   {
     id: 3,
-    title: "Шаг 2: Ты получил роль Visitor!",
-    description: "Теперь ты Visitor! Эта роль дает доступ к базовым каналам. Чтобы стать General Member, покажи, что ты активный и живой участник. Дальше — инструкции!",
+    titleKey: "step2_title",
+    descriptionKey: "step2_description",
     isVisitor: true, // Добавляем флаг для шага с Visitor
   },
   {
     id: 4,
-    title: "Шаг 3: Выбери роли в #role-picker",
-    description: "Перейди в канал #role-picker и выбери интересующие тебя роли. Это откроет доступ к специализированным каналам и повысит шанс быть замеченным модераторами.",
+    titleKey: "step3_title",
+    descriptionKey: "step3_description",
     isRolePicker: true, // Добавляем флаг для шага выбора ролей
   },
   {
     id: 5,
-    title: "Шаг 4: Прояви активность в #visitor-general",
-    description: "Пиши в каналах для Visitor, общайся с модераторами, делись контентом. Это поможет тебе получить роль General Member быстрее.",
+    titleKey: "step4_title",
+    descriptionKey: "step4_description",
     isActivity: true, // Добавляем флаг для шага активности
   },
   {
     id: 6,
-    title: "Шаг 5: Участвуй в ивентах в канале #Oasis Stage",
-    description: "Посещай событий сообщества, слушай спикеров, задавай вопросы. Это отличная возможность быстро получить роль General Member.",
+    titleKey: "step5_title",
+    descriptionKey: "step5_description",
     isEvent: true, // Добавляем флаг для шага с ивентами
   },
   {
     id: 7,
-    title: "Ты готов!",
-    description: "Поздравляю! Теперь ты знаешь все секреты. Если ты выполнил все шаги — модераторы уже заметили твою активность. Осталось дождаться роли General Member. Добро пожаловать в коммьюнити!",
+    titleKey: "final_title",
+    descriptionKey: "final_description",
     isFinal: true,
   },
 ];
@@ -78,7 +78,7 @@ const stepVariants = {
 export default function IntroductoryQuest({ onComplete }: IntroductoryQuestProps) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [direction, setDirection] = useState(1); // 1 for next, -1 for prev
-  // TODO: Подключить переводы useTranslations
+  const t = useTranslations('IntroductoryQuest'); // Добавляем хук для локализации
 
   const currentStepData = introSteps[currentStepIndex];
 
@@ -110,7 +110,7 @@ export default function IntroductoryQuest({ onComplete }: IntroductoryQuestProps
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="flex-1 h-[calc(100dvh-120px)] flex flex-col items-center justify-center  p-8"
+      className="flex-1 mt-24 flex flex-col items-center justify-center  p-8"
     >
       <div className="bg-[rgb(var(--color-dark-card))]/80 p-12 rounded-xl shadow-lg max-w-2xl w-full text-center relative overflow-hidden">
         {/* Контейнер с фиксированной высотой для контента */}
@@ -140,12 +140,14 @@ export default function IntroductoryQuest({ onComplete }: IntroductoryQuestProps
                   priority
                 />
               )}
-              <h1 className="text-2xl font-bold text-[rgb(var(--color-text-primary))] mb-4">{currentStepData.title}</h1>
+              {!currentStepData.isFinal && (
+                <h1 className="text-2xl font-bold text-[rgb(var(--color-text-primary))] mb-4">{t(currentStepData.titleKey)}</h1>
+              )}
               
               {/* Форматированная инструкция для шага верификации */}
               {currentStepData.isVerification ? (
                 <div className="text-left mb-8">
-                  <h2 className="text-lg font-medium text-[rgb(var(--color-text-primary))] mb-3">Как пройти верификацию:</h2>
+                  <h2 className="text-lg font-medium text-[rgb(var(--color-text-primary))] mb-3">{t('step1_how_to')}</h2>
                   <ol className="space-y-5">
                     <li className="flex items-center">
                       <div className="bg-emerald-800/30 p-1 rounded-full mr-3">
@@ -153,7 +155,7 @@ export default function IntroductoryQuest({ onComplete }: IntroductoryQuestProps
                       </div>
                       <div>
                         <p className="text-[rgb(var(--color-text-secondary))]">
-                          Зайди в канал <span className="bg-zinc-700 text-zinc-300 px-1.5 py-0.5 rounded-md font-mono text-sm">#verify-yourself</span> на сервере
+                          {t('step1_go_to_channel')}
                         </p>
                       </div>
                     </li>
@@ -163,7 +165,7 @@ export default function IntroductoryQuest({ onComplete }: IntroductoryQuestProps
                       </div>
                       <div>
                         <p className="text-[rgb(var(--color-text-secondary))]">
-                          Нажми кнопку <span className="bg-zinc-700 text-zinc-300 px-1.5 py-0.5 rounded-md font-mono text-sm">✅ Verify</span>
+                          {t('step1_click_verify')}
                         </p>
                       </div>
                     </li>
@@ -173,7 +175,7 @@ export default function IntroductoryQuest({ onComplete }: IntroductoryQuestProps
                       </div>
                       <div>
                         <p className="text-[rgb(var(--color-text-secondary))]">
-                          Прочитай правила и нажми <span className="bg-zinc-700 text-zinc-300 px-1.5 py-0.5 rounded-md font-mono text-sm">Continue</span>
+                          {t('step1_read_rules')}
                         </p>
                       </div>
                     </li>
@@ -183,7 +185,7 @@ export default function IntroductoryQuest({ onComplete }: IntroductoryQuestProps
                       </div>
                       <div>
                         <p className="text-[rgb(var(--color-text-secondary))]">
-                          Пройди капчу (выбери нужные цифры)
+                          {t('step1_captcha')}
                         </p>
                       </div>
                     </li>
@@ -192,20 +194,20 @@ export default function IntroductoryQuest({ onComplete }: IntroductoryQuestProps
               ) : currentStepData.isVisitor ? (
                 <div className="text-center mb-8">
                   <p className="text-[rgb(var(--color-text-secondary))] mb-4">
-                    Теперь ты <span className="font-bold text-blue-400">Visitor</span>! Эта роль дает доступ к базовым каналам. Чтобы стать <span className="font-bold text-pink-400">General Member</span>, покажи, что ты активный и живой участник. Дальше — инструкции!
+                    {t('step2_visitor_info')}
                   </p>
                   
                   {/* Блок с важной информацией */}
                   <div className="bg-blue-950/30 border border-blue-600/30 p-4 mt-6 rounded-lg text-left">
-                    <p className="text-blue-200 font-medium">Важно:</p>
+                    <p className="text-blue-200 font-medium">{t('step2_important')}</p>
                     <p className="text-blue-100/90 mt-1">
-                      Без роли <span className="font-bold text-pink-400">General Member</span> ты не сможешь участвовать во всех активностях и стать полноценным членом сообщества!
+                      {t('step2_important_text')}
                     </p>
                   </div>
                 </div>
               ) : currentStepData.isRolePicker ? (
                 <div className="text-left mb-8">
-                  <h2 className="text-lg font-medium text-[rgb(var(--color-text-primary))] mb-3">Инструкция:</h2>
+                  <h2 className="text-lg font-medium text-[rgb(var(--color-text-primary))] mb-3">{t('step3_instruction')}</h2>
                   <ol className="space-y-3 mb-6">
                     <li className="flex items-center">
                       <div className="bg-emerald-800/30 p-1 rounded-full mr-3">
@@ -213,7 +215,7 @@ export default function IntroductoryQuest({ onComplete }: IntroductoryQuestProps
                       </div>
                       <div>
                         <p className="text-[rgb(var(--color-text-secondary))]">
-                          Перейди в канал <span className="bg-zinc-700 text-zinc-300 px-1.5 py-0.5 rounded-md font-mono text-sm">#role-picker</span>
+                          {t('step3_go_to_channel')}
                         </p>
                       </div>
                     </li>
@@ -223,41 +225,41 @@ export default function IntroductoryQuest({ onComplete }: IntroductoryQuestProps
                       </div>
                       <div>
                         <p className="text-[rgb(var(--color-text-secondary))]">
-                          Нажми на кнопки, которые доступны в канале, чтобы выбрать роли
+                          {t('step3_click_buttons')}
                         </p>
                       </div>
                     </li>
                   </ol>
                   
                   <div className="bg-blue-950/30 border border-blue-600/30 p-4 rounded-lg mb-4">
-                    <h3 className="text-blue-200 font-medium mb-2">Зачем это нужно:</h3>
+                    <h3 className="text-blue-200 font-medium mb-2">{t('step3_why_needed')}</h3>
                     <ul className="list-disc list-inside space-y-2">
                       <li className="text-blue-100/90">
-                        Открывают больше возможностей для вашей активности и доступ к специализированным каналам (например, <span className="italic">#art-forge</span> для художников)
+                        {t('step3_why_needed_1')}
                       </li>
                       <li className="text-blue-100/90">
-                        Повышают шанс быть замеченным модераторами
+                        {t('step3_why_needed_2')}
                       </li>
                     </ul>
                   </div>
                 </div>
               ) : currentStepData.isActivity ? (
                 <div className="text-left mb-8">
-                  <h2 className="text-lg font-medium text-[rgb(var(--color-text-primary))] mb-3">Что делать:</h2>
+                  <h2 className="text-lg font-medium text-[rgb(var(--color-text-primary))] mb-3">{t('step4_what_to_do')}</h2>
                   <ol className="space-y-3 mb-6">
                     <li className="flex items-center">
                       <div className="bg-emerald-800/30 p-1 rounded-full mr-3">
                         <span className="inline-flex items-center justify-center h-5 w-5 rounded-full bg-emerald-500/20 text-emerald-400">1</span>
                       </div>
                       <p className="text-[rgb(var(--color-text-secondary))]">
-                        Пиши в <span className="bg-zinc-700 text-zinc-300 px-1.5 py-0.5 rounded-md font-mono text-sm">#visitor-general</span> на английском, тегай модераторов и общайся с ними
+                        {t('step4_write_in_channel')}
                       </p>
                     </li>
                     
                     <div className="ml-8 mt-1">
                       <ul className="list-disc list-inside space-y-1 text-[rgb(var(--color-text-secondary))]">
-                        <li>Задавай вопросы о проекте</li>
-                        <li>Участвуй в обсуждениях</li>
+                        <li>{t('step4_ask_questions')}</li>
+                        <li>{t('step4_participate')}</li>
                       </ul>
                     </div>
                     
@@ -266,29 +268,29 @@ export default function IntroductoryQuest({ onComplete }: IntroductoryQuestProps
                         <span className="inline-flex items-center justify-center h-5 w-5 rounded-full bg-emerald-500/20 text-emerald-400">2</span>
                       </div>
                       <p className="text-[rgb(var(--color-text-secondary))]">
-                        Размещай контент в креативных каналах
+                        {t('step4_post_content')}
                       </p>
                     </li>
                     
                     <div className="ml-8 mt-1">
                       <ul className="list-disc list-inside space-y-1 text-[rgb(var(--color-text-secondary))]">
-                        <li>Мемы в <span className="bg-zinc-700 text-zinc-300 px-1.5 py-0.5 rounded-md font-mono text-sm">#memes-share</span> 🐦</li>
-                        <li>Фан-арты в <span className="bg-zinc-700 text-zinc-300 px-1.5 py-0.5 rounded-md font-mono text-sm">#sahara-fan-arts</span> 🎨</li>
-                        <li>Свои проекты в <span className="bg-zinc-700 text-zinc-300 px-1.5 py-0.5 rounded-md font-mono text-sm">#i-made-this</span> ✨</li>
+                        <li>{t('step4_memes')}</li>
+                        <li>{t('step4_fanarts')}</li>
+                        <li>{t('step4_projects')}</li>
                       </ul>
                     </div>
                   </ol>
                   
                   <div className="bg-blue-950/30 border border-blue-600/30 p-4 rounded-lg mb-4">
-                    <h3 className="text-blue-200 font-medium mb-2">Совет:</h3>
+                    <h3 className="text-blue-200 font-medium mb-2">{t('step4_tip')}</h3>
                     <p className="text-blue-100/90">
-                      Не спамь! Качественный контент увеличивает шансы на одобрение.
+                      {t('step4_no_spam')}
                     </p>
                   </div>
                 </div>
               ) : currentStepData.isEvent ? (
                 <div className="text-left mb-8">
-                  <h2 className="text-lg font-medium text-[rgb(var(--color-text-primary))] mb-3">Инструкция:</h2>
+                  <h2 className="text-lg font-medium text-[rgb(var(--color-text-primary))] mb-3">{t('step3_instruction')}</h2>
                   
                   <ol className="space-y-3 mb-6">
                     <li className="flex items-center">
@@ -296,7 +298,7 @@ export default function IntroductoryQuest({ onComplete }: IntroductoryQuestProps
                         <span className="inline-flex items-center justify-center h-5 w-5 rounded-full bg-emerald-500/20 text-emerald-400">1</span>
                       </div>
                       <p className="text-[rgb(var(--color-text-secondary))]">
-                        Следи за анонсами в <span className="bg-zinc-700 text-zinc-300 px-1.5 py-0.5 rounded-md font-mono text-sm">#events-schedule</span>
+                        {t('step5_follow_announcements')}
                       </p>
                     </li>
                     
@@ -305,38 +307,39 @@ export default function IntroductoryQuest({ onComplete }: IntroductoryQuestProps
                         <span className="inline-flex items-center justify-center h-5 w-5 rounded-full bg-emerald-500/20 text-emerald-400">2</span>
                       </div>
                       <p className="text-[rgb(var(--color-text-secondary))]">
-                        Заходи в <span className="bg-zinc-700 text-zinc-300 px-1.5 py-0.5 rounded-md font-mono text-sm">#Oasis Stage</span> во время ивента
+                        {t('step5_join_channel')}
                       </p>
                     </li>
                     
                     <div className="ml-8 mt-1">
                       <ul className="list-disc list-inside space-y-1 text-[rgb(var(--color-text-secondary))]">
-                        <li>Общайся и отвечай на вопросы в чате</li>
-                        <li>Поднимайся на трибуну (если разрешают ведущие)</li>
+                        <li>{t('step5_chat')}</li>
+                        <li>{t('step5_stage')}</li>
                       </ul>
                     </div>
                   </ol>
                   
                   <div className="bg-blue-950/30 border border-blue-600/30 p-4 rounded-lg mb-4">
-                    <h3 className="text-blue-200 font-medium mb-2">Лайфхак:</h3>
+                    <h3 className="text-blue-200 font-medium mb-2">{t('step5_lifehack')}</h3>
                     <p className="text-blue-100/90">
-                      Модераторы часто раздают роли General Member прямо во время ивентов!
+                      {t('step5_lifehack_text')}
                     </p>
                   </div>
                 </div>
               ) : currentStepData.isFinal ? (
                 <div className="text-center mb-8">
                   <Image
-                    src="/bitsy/bitsy-success.svg"
-                    alt="Лисёнок Bitsy держит табличку 'General Member Unlocked!'"
+                    src="/introBitsy.png"
+                    alt="Лисёнок Bitsy"
                     width={200}
                     height={200}
                     className="mb-6 mx-auto"
                   />
-                  <p className="text-[rgb(var(--color-text-secondary))] mb-8 whitespace-pre-line">{currentStepData.description}</p>
+                  <h1 className="text-2xl font-bold text-[rgb(var(--color-text-primary))] mb-4">{t(currentStepData.titleKey)}</h1>
+                  <p className="text-[rgb(var(--color-text-secondary))] mb-8 whitespace-pre-line">{t(currentStepData.descriptionKey)}</p>
                 </div>
               ) : (
-                <p className="text-[rgb(var(--color-text-secondary))] mb-8 whitespace-pre-line">{currentStepData.description}</p>
+                <p className="text-[rgb(var(--color-text-secondary))] mb-8 whitespace-pre-line">{t(currentStepData.descriptionKey)}</p>
               )}
               
               {/* Скриншот для шага верификации */}
@@ -427,16 +430,16 @@ export default function IntroductoryQuest({ onComplete }: IntroductoryQuestProps
                 variant="outline" 
                 onClick={handleSkipTutorial} 
                 className="flex-1 mx-2 cursor-pointer"
-                aria-label="Пропустить вводный курс"
+                aria-label={t('button_skip')}
               >
-                Пропустить вводный курс <SkipForward className="ml-2 h-5 w-5" />
+                {t('button_skip')} <SkipForward className="ml-2 h-5 w-5" />
               </Button>
               <Button 
                 onClick={handleNext} 
                 className="flex-1 mx-2 cursor-pointer"
-                aria-label="Начать"
+                aria-label={t('button_start')}
               >
-                Начать <Rocket className="ml-2 h-5 w-5" />
+                {t('button_start')} <Rocket className="ml-2 h-5 w-5" />
               </Button>
             </>
           ) : (
@@ -446,25 +449,25 @@ export default function IntroductoryQuest({ onComplete }: IntroductoryQuestProps
                 variant="outline" 
                 onClick={handlePrev} 
                 disabled={currentStepIndex === 0}
-                aria-label="Предыдущий шаг"
+                aria-label={t('button_back')}
                 className={cn(currentStepIndex === 0 && 'opacity-0 pointer-events-none', "cursor-pointer")}
               >
                 <ArrowLeft className="h-5 w-5 mr-2" />
-                Назад
+                {t('button_back')}
               </Button>
 
               <div className="text-xs text-[rgb(var(--color-text-muted))]">
-                Шаг {currentStepIndex + 1} из {introSteps.length}
+                {t('step_counter', { current: currentStepIndex + 1, total: introSteps.length })}
               </div>
 
               {currentStepData.isFinal ? (
-                <Button onClick={handleComplete} aria-label="Открыть полный гайд" className="cursor-pointer">
-                  Открыть полный гайд 📖
+                <Button onClick={handleComplete} aria-label={t('button_open_guide')} className="cursor-pointer">
+                  {t('button_open_guide')}
                   <ArrowRight className="h-5 w-5 ml-2" />
                 </Button>
               ) : (
-                <Button onClick={handleNext} aria-label="Следующий шаг" className="cursor-pointer">
-                  Далее
+                <Button onClick={handleNext} aria-label={t('button_next')} className="cursor-pointer">
+                  {t('button_next')}
                   <ArrowRight className="h-5 w-5 ml-2" />
                 </Button>
               )}

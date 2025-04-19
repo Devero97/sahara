@@ -7,7 +7,7 @@ interface XpProgressBarProps {
   currentLevel: number;
   progress: number;
   messagesToNextLevel: number;
-  t: (key: string, params?: Record<string, any>) => string;
+  t: (key: string, params?: Record<string, unknown>) => string;
 }
 
 export const XpProgressBar = ({
@@ -34,7 +34,7 @@ export const XpProgressBar = ({
     <div className="mt-2 mb-4">
       <div className="flex justify-between mb-2">
         <div className="text-white font-bold">
-          {t("calculator.level")} {currentLevel}
+          {t("calculator.level", { level: currentLevel })}
         </div>
         <div className="flex space-x-2 items-center">
           <span className="text-[var(--color-text-secondary)] text-sm">

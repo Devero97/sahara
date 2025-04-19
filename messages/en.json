@@ -1,35 +1,22 @@
 {
-  "HomePage": {
-    "title": "Hello world!",
-    "about": "Navigate to about page"
+  "Index": {
+    "title": "Sahara AI",
+    "description": "Sahara AI Discord Server: Server Guide and User Manual"
   },
-  "Header": {
-    "nav": {
-      "quizzes": "Quizzes"
-    }
-  },
-  "Index": {},
   "GuideNav": {
     "cat_intro": "Introduction",
     "m1_nav": "First Steps",
-    "m2_nav": "Important Channels",
-    "m3_nav": "Role Selection",
+    "m2_nav": "Channels",
+    "m3_nav": "Role",
 
     "cat_progress": "Progress",
     "m4_nav": "XP System",
     "m5_nav": "Oasis Points (OP)",
-    "m6_nav": "Shop & Commands",
+    "m6_nav": "Content",
 
-    "cat_activities": "Activities",
-    "m7_nav": "Events",
-    "m8_nav": "Content & Creativity",
-    "m9_nav": "Communication",
-    "m10_nav": "Testnet Access (WL)",
+     "cat_info": "Information",
 
-    "cat_info": "Information",
-    "m11_nav": "Help & Support",
-    "m12_nav": "News Sources",
-    "m13_nav": "Structure Overview"
+    "m13_nav": "Summary"
   },
   "GuideContent": {
     "tips_title": "Tips:",
@@ -41,27 +28,29 @@
     "minute": "minute",
     "message": "msg.",
     "calculator": {
-      "title": "Discord Points Calculator",
-      "description": "Type the /rank command in the #op-commands channel, find your exact XP, and enter it here",
-      "input_placeholder": "Enter XP (1-555.489)",
+      "title": "Progress Calculator",
+      "description": "Enter your current XP to see your progress and status",
+      "input_placeholder": "Enter your XP (e.g. 12500)",
       "loading": "Loading data...",
       "loading_button": "Loading...",
       "calculating": "Calculating...",
       "calculate": "Calculate",
       "reset": "Reset",
-      "error_range": "Please enter a number between 1 and 555.489",
+      "current_role": "Current role",
+      "current_level": "Current level",
       "to_next_level": "To {role} (level {level})",
       "messages_count": "{count} messages",
+      "messages_to_level": "{count} messages to next level",
+      "level": "Level {level}",
       "xp_count": "{currentXp}/{nextLevelXp} XP",
+      "error_range": "Please enter a number between 1 and 555.489",
       "clear_field": "Clear field",
-      "current_role": "Current role",
-      "level": "Level",
       "roles": {
-        "novice": "Novice",
-        "bronze": "Bronze",
-        "silver": "Silver",
-        "gold": "Gold",
-        "platinum": "Platinum"
+        "новичок": "Novice",
+        "бронза": "Bronze",
+        "серебро": "Silver",
+        "золото": "Gold",
+        "платина": "Platinum"
       }
     },
 
@@ -171,7 +160,7 @@
     "m2_roles_table_header1": "Role",
     "m2_roles_table_header2": "How to Get / Description",
     "m2_roles_bronze_silver_gold_platinum": "Bronze 🥉, Silver 🥈, Gold 🥇, Platinum 💎",
-    "m2_roles_tier_desc": "Accumulation of XP (5k, 55k, 300k, 555k XP) for communication, content, events. They show your level and are a symbol of trust.",
+    "m2_roles_tier_desc": "Accumulation of XP (8.267, 64.722, 227.814, 555.489 XP) for communication, content, events. They show your level and are a symbol of trust.",
     "m2_role_content_creator": "Content Creator 🎨",
     "m2_role_content_creator_desc": "Awarded by moderators for original content: memes in #memes, tweets in #community-tweets.",
     "m2_role_poker_pharaoh": "Poker Pharaoh ♠️",
@@ -191,7 +180,7 @@
     "m2_next_title": "What's next?",
     "m2_next_desc": "In the next section \"Role Selection\", you'll discover what roles are available and how they can help you progress on the server.",
 
-    "m3_title": "Role Selection",
+    "m3_title": "Role",
     "m3_desc": "Roles in Sahara AI are not just badges in your profile. They reflect your contribution to the community, unlock unique opportunities, and directly influence your chances in airdrops and giveaways. Here you'll learn which roles to choose first and how to turn them into advantages.",
     
     "m3_key_roles_title": "Key Roles: Access to Activities",
@@ -226,7 +215,7 @@
     "m3_reward_roles_desc": "These roles cannot be chosen — they are given for activity. They show your level of involvement in the project:",
     
     "m3_roles_bronze_silver_gold_platinum": "Bronze 🥉, Silver 🥈, Gold 🥇, Platinum 💎",
-    "m3_roles_tier_desc": "Accumulation of XP (5k, 55k, 300k, 555k XP) for communication, content, events. They show your level and are a symbol of trust.",
+    "m3_roles_tier_desc": "Accumulation of XP (8.267, 64.722, 227.814, 555.489 XP) for communication, content, events. They show your level and are a symbol of trust.",
     
     "m3_role_content_creator": "Content Creator 🎨",
     "m3_role_content_creator_desc": "Awarded by moderators for original content: memes in {memes}, tweets in {tweets}.",
@@ -244,7 +233,7 @@
     "m3_next_title": "What's Next?",
     "m3_next_desc": "In the Progress section, you'll learn what XP and OP are and how they work.",
 
-    "m4_title": "Experience (XP) System and Activity Roles",
+    "m4_title": "Experience (XP) System",
     "m4_desc": "XP (Experience Points) is your virtual progression in Sahara AI. The more XP you accumulate, the higher your level and the closer you get to key roles: Bronze, Silver, Gold, Platinum.",
     "m4_add_text": "How to earn XP:\n• Messages in chats (#general, #russian, etc.): 15 XP per minute (counted once per minute).\n• Participation in events on #Oasis Stage (prizes and bonuses).\n• Content creation (#memes, #community-tweets).\n\nHow to check XP: Command /rank in #op-commands.",
     "m4_img_alt": "XP System",
@@ -274,10 +263,7 @@
     "m4_calculator_desc": "For your convenience, we've added a progress calculator that will show your progress in more detail, try it:",
 
     "m4_next_title": "What's Next?",
-    "m4_next_desc": "Now that you know how to count XP, go to the 'Oasis Points (OP)' section to learn:",
-    "m4_next_point1": "How to convert activity into OP.",
-    "m4_next_point2": "What to buy in {channel} to accelerate your progress.",
-    "m4_next_point3": "Why OP is the key to exclusive roles.",
+    "m4_next_desc": "Now that you know how to count XP, go to the 'Oasis Points (OP)' section to learn how to convert activity into OP.",
 
     "m5_title": "Oasis Points (OP): Server Currency",
     "m5_desc": "Oasis Points (OP) is the internal currency of the server that you can earn and spend on various rewards.",
@@ -287,80 +273,131 @@
     "m5_tip2": "Twitter raids are the most profitable way.",
     "m5_tip3": "Don't miss announcements and events.",
     "m5_tip4": "Keep track of credit logs in #op-logs.",
+    
+    "m5_earning_op_title": "How and Where to Earn OP?",
+    "m5_daily_claim_title": "Daily Bonus",
+    "m5_daily_claim_desc": "Command /claim daily in the #op-commands channel — 100 OP every 24 hours.",
+    "m5_twitter_raids_title": "Twitter Raids",
+    "m5_twitter_raids_desc": "Complete tasks in #twitter-raids (like, retweet) — ~200 OP per task.",
+    "m5_twitter_raids_tip": "Don't forget to link your Twitter: /set twitter [username].",
+    "m5_announcements_likes_title": "Announcement Likes",
+    "m5_announcements_likes_desc": "Like posts in #announcements within the first 4 hours — 10 OP each.",
+    "m5_events_title": "Events",
+    "m5_events_desc": "Participate in activities on #Oasis Stage — rewards depend on the event type.",
+    "m5_quizzes_title": "Telegram Quizzes",
+    "m5_quizzes_desc": "Participate in quizzes in the Sahara AI Telegram channel.",
+    
+    "m5_spending_op_title": "How to Spend OP?",
+    "m5_shop_title": "Shop #op-shop",
+    "m5_shop_desc": "Here you can purchase roles, XP boosters, and other benefits.",
+    "m5_shop_categories": "Product categories:",
+    "m5_shop_roles": "• Roles — temporary or permanent privileges and access to private channels.",
+    "m5_shop_boosters": "• XP boosters — increase the experience gained for a certain period.",
+    "m5_shop_merch": "• Merch — exclusive physical products (in the future).",
+    
+    "m5_checking_balance_title": "How to Check Your OP Balance?",
+    "m5_checking_balance_desc": "Use the /leaderboard command in the #op-commands channel.",
+    
+    "m5_next_title": "What's Next?",
+    "m5_next_desc": "In the next section 'Content', you'll learn how to use the earned OP and what commands will help you interact effectively with the system.",
 
-    "m6_title": "Shop (#op-shop) and Useful Commands",
-    "m6_desc": "Earned OP can be spent in the #op-shop on roles, XP, and other rewards. The #op-commands channel is used to interact with the Engage bot.",
-    "m6_code_desc": "Useful commands in #op-commands",
-    "m6_img_alt": "OP Shop and Commands",
-    "m6_tip1": "Check out the assortment in #op-shop.",
-    "m6_tip2": "Use /rank and /leaderboard to check status.",
-    "m6_tip3": "Don't forget to link Twitter via /set twitter.",
+    "m6_title": "Content",
+    "m6_desc": "Content creation is not just a way to express creativity, but also a direct path to exclusive rewards. Here you'll learn how your memes and tweets can unlock access to the Content Creator role and whitelist (WL).",
+    
+    "m6_content_creator_title": "Content Creator Role: Your Creative Status",
+    "m6_how_to_get_title": "How to get it?",
+    "m6_publish_content_desc": "Publish content in special channels:",
+    "m6_memes_channel": "Memes → #memes.",
+    "m6_tweets_channel": "Tweets → #community-tweets (post your work on Twitter and share it here).",
+    "m6_quality_over_quantity": "Quality over quantity: Moderators mark works that are:",
+    "m6_originality": "Original (don't copy others' ideas).",
+    "m6_relevant_content": "Relevant to Sahara AI theme.",
+    "m6_community_reaction": "Generate community reaction (likes, reposts).",
+    
+    "m6_role_benefits_title": "What does the role give you?",
+    "m6_twitter_mentions_benefit": "Mentions in the project's Twitter (your post appears in tasks in the #twitter-raids channel).",
+    "m6_artist_content_access": "Access to post your work in the #artist-content channel.",
+    
+    "m6_wl_chance_title": "Content = Chance for WL",
+    "m6_wl_chance_desc": "How to get on the whitelist through creativity?",
+    
+    "m6_oasis_stage_title": "Participation in #Oasis Stage",
+    "m6_follow_announcements": "Follow announcements in #events-announcements.",
+    "m6_ama_sessions": "Participate in AMA sessions, where a certain number of WL spots are distributed among all participants.",
+    
+    "m6_publish_twitter_title": "Publish Work on Twitter",
+    "m6_publish_twitter_desc": "Send links to posts in #community-tweets.",
+    
+    "m6_regional_activities_title": "Regional Activities",
+    "m6_regional_activities_desc": "Mini-contests are held in #ru-chat and other language chats, with WL spots awarded for winning.",
+    
+    "m6_next_title": "What's Next?",
+    "m6_next_desc": "Now you know how content helps you get a role and WL. Let's move to the 'Summary'.",
 
-    "m7_title": "Activities: Events, AMA, Music",
-    "m7_desc": "Various events are regularly held in voice channels on the server.",
-    "m7_add_text": "Main event channels:\n• #events-announcements: Announcements of upcoming events.\n• #events-schedule: Weekly schedule.\n• #Oasis Stage: Main stage for AMA, games, contests. Participate and win XP/OP!\n• #Music and Chill: Joint music listening.",
-    "m7_img_alt": "Server events",
-    "m7_tip1": "Keep track of the schedule in #events-schedule.",
-    "m7_tip2": "Participating in events is a great way to earn XP and OP.",
-    "m7_tip3": "Attend AMA sessions to stay up to date with news and win WL.",
-
-    "m8_title": "Content Creation and Creativity",
-    "m8_desc": "Share your creativity related to Sahara AI with the community! The best works may be rewarded.",
-    "m8_add_text": "Content channels:\n• #community-tweets: Share links to your tweets about the project.\n• #meme: Post memes.\n• #artist-content: Channel for participants with the Content Creator/Artist role.\n• #generative-prompts: Try AI image generator.",
-    "m8_img_alt": "Content creation",
-    "m8_tip1": "Quality content can bring a role or even WL.",
-    "m8_tip2": "Don't be shy to share your work.",
-    "m8_tip3": "Memes are also an important part of the community!",
-
-    "m9_title": "Communication Channels",
-    "m9_desc": "Communication is key to gaining XP and integrating into the community. Choose the appropriate channel.",
-    "m9_add_text": "Main chats:\n• #general: Main server chat (English).\n• #russian (and others): Regional chats (role needed).",
-    "m9_tip1": "Follow the rules and be polite.",
-    "m9_tip2": "Ask questions if something is unclear.",
-    "m9_tip3": "Remember: 1 message per minute brings 15 XP.",
-
-    "m10_title": "How to Get Testnet Access (WL)",
-    "m10_desc": "Participating in Sahara AI closed testnet is an important step. Access (Whitelist, WL) can be obtained not only through the form, but also on the Discord server.",
-    "m10_add_text": "Ways to get WL on the server:\n• AMA sessions and Events: Keep an eye on #events-announcements, WL is often raffled.\n• Content: Create quality content, publish on Twitter and share in #community-tweets / #meme.\n• Regional Contests: Keep track of activities in your regional chat.",
-    "m10_img_alt": "Testnet access (WL)",
-    "m10_tip1": "Attend AMA - it's a real chance.",
-    "m10_tip2": "Your content may be noticed and rewarded.",
-    "m10_tip3": "Don't miss contests in regional chats.",
-
-    "m11_title": "Help, Support and Security",
-    "m11_desc": "If you have problems or questions, or you notice a violation, use the appropriate channels.",
-    "m11_add_text": "Support and security channels:\n• #open-a-ticket: For serious problems, create a ticket for administration.\n• #report-scams-and-spams: Report spammers/scammers.\n• #scam-safety: Study information about current types of scams.",
-    "m11_tip1": "Use tickets only for important unresolved issues.",
-    "m11_tip2": "Help maintain order - report violations.",
-
-    "m12_title": "News Sources",
-    "m12_desc": "Stay up to date with the latest project and industry news.",
-    "m12_add_text": "News channels:\n• #ai-web3-news: Official news from the Sahara AI team.\n• #web3-ai-news-finds: News found by community members (AI/Web3 role needed).",
-    "m12_tip1": "Check #ai-web3-news for official information.",
-    "m12_tip2": "Share interesting news in #web3-ai-news-finds (if you have the role).",
+    
 
     "m13_title": "Summary",
-    "m13_p": "Keep this guide handy, refer back to it if you forget anything, and — forward! Sahara AI awaits your achievements. 🌟",
-    "m13_desc": "(Old text, can be removed or kept)",
-    "m13_desc_final": "Congratulations! You have mastered all the key aspects of the Sahara AI Discord server.\n\nNow you know how to turn activity into rewards, statuses, and exclusive opportunities. All that's left is to act!\nSahara AI is a project where your efforts directly impact your results. Every message, like, or post is a step towards new roles, rewards, and exclusive access.\n\nRemember:\n• The higher your level (Bronze → Platinum), the greater your share in airdrops.\n• Quality of content is more important than quantity.\n• WL can be obtained not only through the form but also through contributions to the community."
+    "m13_desc": "Final section of the guide",
+    "m13_p": "Keep this guide always at hand and refer to it whenever needed. New achievements in Sahara AI await you!",
+    "m13_desc_final": "Congratulations on completing the guide! You have successfully mastered all the key aspects of the Sahara AI Discord server.\n\nNow you have all the knowledge about how to effectively convert your activity into rewards, statuses, and exclusive opportunities. It's time to put this knowledge into practice!\nIn the Sahara AI project, every action you take matters and directly affects your results. Every message, like, or post is another step toward new roles, rewards, and exclusive access.\n\nRemember:The quality of the content you create is always more important than quantity.\n• You can get on the whitelist (WL) not only through the standard form but also through active participation in community life."
   },
-  "CodeExample": {
-    "copyButton": "Copy",
-    "copiedButton": "Copied!",
-    "copyTooltip": "Click to copy code"
-  },
-  "ServerPanel": {
-    "categories": {
-      "1": "Main Channels",
-      "2": "Voice Channels",
-      "3": "Completion"
-    },
-    "channels": {
-      "1": "general",
-      "2": "rules",
-      "3": "General",
-      "4": "Music",
-      "5": "Summary"
-    }
+  "IntroductoryQuest": {
+    "welcome_title": "Welcome!",
+    "welcome_description": "Hi! I'm Bitsy, your guide to the Sahara AI community. If you're new, I'll show you how to get full access to the server. And if you're already familiar — click 'Skip' and explore advanced features!",
+    
+    "step1_title": "Step 1: Complete Verification",
+    "step1_description": "Go to the #verify channel on the server.\nClick the Verify button → read the rules → Continue → complete the captcha (select the right numbers).",
+    "step1_how_to": "How to complete verification:",
+    "step1_go_to_channel": "Go to the #verify-yourself channel on the server",
+    "step1_click_verify": "Click the ✅ Verify button",
+    "step1_read_rules": "Read the rules and click Continue",
+    "step1_captcha": "Complete the captcha (select the right numbers)",
+    
+    "step2_title": "Step 2: You've got the Visitor role!",
+    "step2_description": "Now you're a Visitor! This role gives you access to basic channels. To become a General Member, show that you're an active and engaged participant. Here are the instructions!",
+    "step2_visitor_info": "Now you're a Visitor! This role gives you access to basic channels. To become a General Member, show that you're an active and engaged participant. Here are the instructions!",
+    "step2_important": "Important:",
+    "step2_important_text": "Without the General Member role, you won't be able to participate in all activities and become a full member of the community!",
+    
+    "step3_title": "Step 3: Choose roles in #role-picker",
+    "step3_description": "Go to the #role-picker channel and choose roles that interest you. This will unlock access to specialized channels and increase your chances of being noticed by moderators.",
+    "step3_instruction": "Instructions:",
+    "step3_go_to_channel": "Go to the #role-picker channel",
+    "step3_click_buttons": "Click on the buttons available in the channel to select roles",
+    "step3_why_needed": "Why is this needed:",
+    "step3_why_needed_1": "Opens up more opportunities for your activity and access to specialized channels (for example, #art-forge for artists)",
+    "step3_why_needed_2": "Increases your chance of being noticed by moderators",
+    
+    "step4_title": "Step 4: Be active in #visitor-general",
+    "step4_description": "Write in Visitor channels, interact with moderators, share content. This will help you get the General Member role faster.",
+    "step4_what_to_do": "What to do:",
+    "step4_write_in_channel": "Write in #visitor-general in English, tag moderators and engage with them",
+    "step4_ask_questions": "Ask questions about the project",
+    "step4_participate": "Participate in discussions",
+    "step4_post_content": "Share content in creative channels",
+    "step4_memes": "Memes in #memes-share 🐦",
+    "step4_fanarts": "Fan-arts in #sahara-fan-arts 🎨",
+    "step4_projects": "Your projects in #i-made-this ✨",
+    "step4_tip": "Tip:",
+    "step4_no_spam": "Don't spam! Quality content increases your chances of approval.",
+    
+    "step5_title": "Step 5: Participate in events in #Oasis Stage",
+    "step5_description": "Attend community events, listen to speakers, ask questions. This is a great opportunity to quickly get the General Member role.",
+    "step5_follow_announcements": "Follow announcements in #events-schedule",
+    "step5_join_channel": "Join #Oasis Stage during events",
+    "step5_chat": "Chat and respond to questions in the chat",
+    "step5_stage": "Go on stage (if allowed by the hosts)",
+    "step5_lifehack": "Lifehack:",
+    "step5_lifehack_text": "Moderators often distribute General Member roles right during events!",
+    
+    "final_title": "You're ready!",
+    "final_description": "Congratulations! Now you know all the secrets. If you've completed all the steps — moderators have already noticed your activity. Just wait for the General Member role. Welcome to the community!",
+    
+    "button_skip": "Skip introduction",
+    "button_start": "Start",
+    "button_back": "Back",
+    "button_next": "Next",
+    "button_open_guide": "Open full guide 📖",
+    "step_counter": "Step {current} of {total}"
   }
 }

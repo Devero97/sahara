@@ -4,9 +4,10 @@ import React from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
-import { ArrowLeft, ArrowRight, Globe } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import XpCalculator from './XpCalculator'; // ИСПРАВЛЕН РЕГИСТР НА XpCalculator
+import Image from 'next/image';
 
 // Обновляем интерфейс данных для одного модуля
 interface ModuleContentData {
@@ -207,7 +208,7 @@ function GuideContentComponent({
               <>
 
                 <h1 className={`text-3xl font-bold text-[rgb(var(--color-text-primary))] ${currentModuleData.isCompletion ? 'mb-6' : 'mb-4'}`}> {/* Больший отступ для заголовка завершения */} 
-                  {moduleTitle}
+                  {!currentModuleData.isCompletion && moduleTitle}
                 </h1>
                 
                 {/* Специальная разметка для первого модуля */}
@@ -624,7 +625,7 @@ function GuideContentComponent({
                         </p>
                       </div>
 
-                      {/* Как это работает - ПЕРЕМЕЩЕНО НИЖЕ */} 
+                      {/* Как это работает - ПЕРЕМЕЩЕНО НИЖЕ */}
                       <div className="bg-sky-900/20 border border-sky-500/10 p-4 rounded-md"> 
                         <h3 className="font-medium text-[rgb(var(--color-text-primary))] mb-2">{t('m3_how_it_works_title')}</h3>
                         <p className="text-[rgb(var(--color-text-secondary))]">
@@ -744,10 +745,10 @@ function GuideContentComponent({
                         </div>
                         {/* Строки таблицы */} 
                         {[ 
-                          { role: t('m4_role_bronze'), xp: '5,000', level: '25' },
-                          { role: t('m4_role_silver'), xp: '55,000', level: '50' },
-                          { role: t('m4_role_gold'), xp: '300,000', level: '75' },
-                          { role: t('m4_role_platinum'), xp: '555,000', level: '100' },
+                          { role: t('m4_role_bronze'), xp: '8,267', level: '25' },
+                          { role: t('m4_role_silver'), xp: '64,722', level: '50' },
+                          { role: t('m4_role_gold'), xp: '227,814', level: '75' },
+                          { role: t('m4_role_platinum'), xp: '555,489', level: '100' },
                         ].map((item, index) => (
                           <div key={index} className="grid grid-cols-3 border-t border-zinc-700/50 text-[rgb(var(--color-text-secondary))] flex items-center">
                             <div className={`p-3 border-r border-zinc-700/50 font-medium ${ 
@@ -833,88 +834,77 @@ function GuideContentComponent({
                       <p className="text-[rgb(var(--color-text-secondary))] mb-3">
                         {t('m4_next_desc')}
                       </p>
-                       <ul className="list-inside space-y-1.5 text-[rgb(var(--color-text-secondary))]">
-                         <li className="flex items-start"><span className="text-zinc-400 mr-2">•</span>{t('m4_next_point1')}</li>
-                         <li className="flex items-start"><span className="text-zinc-400 mr-2">•</span>
-                           {formatChannelNames(t('m4_next_point2', {
-                             channel: '#op-shop'
-                           }))}
-                         </li>
-                         <li className="flex items-start"><span className="text-zinc-400 mr-2">•</span>{t('m4_next_point3')}</li>
-                       </ul>
+                   
                     </div>
                   </div>
                 ) : currentModuleId === 'm5' ? (
                   <div className="space-y-8">
                     {/* Вступление */}
                     <p className="text-[rgb(var(--color-text-secondary))] text-lg">
-                      Oasis Points (OP) — это внутренняя валюта Sahara AI, которую вы можете обменивать на роли, бустеры и другие привилегии. В отличие от XP, OP не влияют на уровень, но открывают доступ к уникальным возможностям.
+                      {t('m5_desc')}
                     </p>
 
                     {/* Как заработать OP? */}
                     <div className="bg-gradient-to-r from-teal-900/30 to-cyan-900/30 p-6 rounded-lg border border-teal-500/20">
                       <h2 className="text-xl font-semibold text-[rgb(var(--color-text-primary))] mb-5 flex items-center">
-                        <span className="text-2xl mr-2">🚀</span> Как заработать OP?
+                        <span className="text-2xl mr-2">🚀</span> {t('m5_earning_op_title')}
                       </h2>
                       <div className="space-y-6">
                         {/* 1. Twitter-raids */}
                         <div className="bg-[rgb(var(--color-dark-base))]/60 p-4 rounded-lg">
                           <h3 className="font-semibold text-lg text-[rgb(var(--color-text-primary))] mb-3 flex items-center">
-                            <span className="text-xl mr-2">1.</span> Twitter-raids <span className="text-blue-400 ml-2">🐦</span>
+                            <span className="text-xl mr-2">1.</span> {t('m5_twitter_raids_title')} <span className="text-blue-400 ml-2">🐦</span>
                           </h3>
                           <p className="text-[rgb(var(--color-text-secondary))] mb-3">
-                            Выполняйте задания в канале <span className="bg-zinc-800 text-zinc-300 px-1.5 py-0.5 rounded-md font-mono text-sm">#twitter-raids</span>:
+                            {formatChannelNames(t('m5_twitter_raids_desc'))}
                           </p>
                           <ol className="list-decimal list-inside space-y-2 text-[rgb(var(--color-text-secondary))] mb-3 pl-2">
-                            <li><span className="font-medium">Привяжите Twitter:</span> Введите <code>/set twitter [ваш_ник]</code> в <span className="bg-zinc-800 text-zinc-300 px-1.5 py-0.5 rounded-md font-mono text-sm">#op-commands</span>.</li>
-                            <li><span className="font-medium">Выберите задание:</span> Нажмите на пост с кнопкой «Check Task».</li>
-                            <li><span className="font-medium">Выполните условие:</span> Лайк + репост указанного твита.</li>
-                            <li><span className="font-medium">Подтвердите выполнение:</span> Вернитесь в Discord → нажмите «Проверить».</li>
+                            <li><span className="font-medium">{t('m5_tip1')}:</span> {formatChannelNames(t('m5_twitter_raids_tip'))}</li>
+                            <li><span className="font-medium">{t('m5_tip2')}:</span> {t('m5_tip2')}</li>
+                            <li><span className="font-medium">{t('m5_tip3')}:</span> {t('m5_tip3')}</li>
                           </ol>
                           <p className="text-[rgb(var(--color-text-secondary))] flex items-center">
-                            <span className="text-emerald-400 mr-1">💰 Награда:</span> +200 OP за задание.
+                            <span className="text-emerald-400 mr-1">💰</span> {t('m5_twitter_raids_desc').split('—')[1]}
                           </p>
                         </div>
                         
                         {/* 2. Участие в Oasis Stage */}
                         <div className="bg-[rgb(var(--color-dark-base))]/60 p-4 rounded-lg">
                           <h3 className="font-semibold text-lg text-[rgb(var(--color-text-primary))] mb-3 flex items-center">
-                             <span className="text-xl mr-2">2.</span> Участие в Oasis Stage <span className="text-purple-400 ml-2">🎤</span>
+                             <span className="text-xl mr-2">2.</span> {t('m5_events_title')} <span className="text-purple-400 ml-2">🎤</span>
                           </h3>
-                           <ul className="list-inside space-y-1.5 text-[rgb(var(--color-text-secondary))] pl-2">
-                             <li className="flex items-start"><span className="text-zinc-400 mr-2">•</span><span className="font-medium">Победа в ивентах</span> (квизы, игры, турниры) → За призовые места получаем определенное количество OP.</li>
-                             <li className="flex items-start"><span className="text-zinc-400 mr-2">•</span><span className="font-medium">Пассивное участие:</span> Модераторы могут начислить OP всем слушателям.</li>
-                           </ul>
+                          <p className="text-[rgb(var(--color-text-secondary))]">
+                            {formatChannelNames(t('m5_events_desc'))}
+                          </p>
                         </div>
 
                         {/* 3. Лайк анонсов */}
                         <div className="bg-[rgb(var(--color-dark-base))]/60 p-4 rounded-lg">
                           <h3 className="font-semibold text-lg text-[rgb(var(--color-text-primary))] mb-3 flex items-center">
-                             <span className="text-xl mr-2">3.</span> Лайк анонсов <span className="text-yellow-400 ml-2">🔔</span>
+                             <span className="text-xl mr-2">3.</span> {t('m5_announcements_likes_title')} <span className="text-yellow-400 ml-2">🔔</span>
                           </h3>
-                          <p className="text-[rgb(var(--color-text-secondary))] mb-2">
-                            Лайкните пост в <span className="bg-zinc-800 text-zinc-300 px-1.5 py-0.5 rounded-md font-mono text-sm">#анонсы</span> в первые 4 часа → <span className="text-emerald-400">+10 OP</span>.
+                          <p className="text-[rgb(var(--color-text-secondary))]">
+                            {formatChannelNames(t('m5_announcements_likes_desc'))}
                           </p>
-                          <p className="text-sm text-zinc-500 italic">Важно: Повторные лайки не засчитываются.</p>
                         </div>
 
                         {/* 4. Ежедневный бонус */}
                         <div className="bg-[rgb(var(--color-dark-base))]/60 p-4 rounded-lg">
                           <h3 className="font-semibold text-lg text-[rgb(var(--color-text-primary))] mb-3 flex items-center">
-                            <span className="text-xl mr-2">4.</span> Ежедневный бонус <span className="text-rose-400 ml-2">🎁</span>
+                            <span className="text-xl mr-2">4.</span> {t('m5_daily_claim_title')} <span className="text-rose-400 ml-2">🎁</span>
                           </h3>
                           <p className="text-[rgb(var(--color-text-secondary))]">
-                            Введите <code>/claim daily</code> в <span className="bg-zinc-800 text-zinc-300 px-1.5 py-0.5 rounded-md font-mono text-sm">#op-commands</span> раз в 24 часа → <span className="text-emerald-400">+100 OP</span>.
+                            {formatChannelNames(t('m5_daily_claim_desc'))}
                           </p>
                         </div>
 
                         {/* 5. Квизы в Telegram */}
                         <div className="bg-[rgb(var(--color-dark-base))]/60 p-4 rounded-lg">
                           <h3 className="font-semibold text-lg text-[rgb(var(--color-text-primary))] mb-3 flex items-center">
-                            <span className="text-xl mr-2">5.</span> Квизы в Telegram <span className="text-sky-400 ml-2">❓</span>
+                            <span className="text-xl mr-2">5.</span> {t('m5_quizzes_title')} <span className="text-sky-400 ml-2">❓</span>
                           </h3>
                           <p className="text-[rgb(var(--color-text-secondary))]">
-                            Участвуйте в викторинах Telegram-канала Sahara AI → <span className="text-emerald-400">до 300 OP</span> за правильные ответы.
+                            {formatChannelNames(t('m5_quizzes_desc'))}
                           </p>
                         </div>
                       </div>
@@ -923,30 +913,30 @@ function GuideContentComponent({
                     {/* Как тратить OP? */}
                     <div className="bg-gradient-to-r from-orange-900/30 to-red-900/30 p-6 rounded-lg border border-orange-500/20">
                        <h2 className="text-xl font-semibold text-[rgb(var(--color-text-primary))] mb-4 flex items-center">
-                        <span className="text-2xl mr-2">🛒</span> Как тратить OP?
+                        <span className="text-2xl mr-2">🛒</span> {t('m5_spending_op_title')}
                       </h2>
                        <p className="text-[rgb(var(--color-text-secondary))] opacity-70">
-                         В магазине <span className="bg-zinc-800 text-zinc-300 px-1.5 py-0.5 rounded-md font-mono text-sm">#op-shop</span> (временно недоступен)
+                         {formatChannelNames(t('m5_shop_desc'))}
                        </p>
                     </div>
 
                     {/* Как проверить сколько у вас OP? */}
                     <div className="bg-gradient-to-r from-lime-900/30 to-emerald-900/30 p-6 rounded-lg border border-lime-500/20">
                       <h2 className="text-xl font-semibold text-[rgb(var(--color-text-primary))] mb-4 flex items-center">
-                        <span className="text-2xl mr-2">📊</span> Как проверить сколько у вас OP?
+                        <span className="text-2xl mr-2">📊</span> {t('m5_checking_balance_title')}
                       </h2>
                       <p className="text-[rgb(var(--color-text-secondary))]">
-                        Чтобы узнать, сколько OP нужно для цели: Введите <code>/leaderboard</code> в <span className="bg-zinc-800 text-zinc-300 px-1.5 py-0.5 rounded-md font-mono text-sm">#op-commands</span> → бот покажет ваш текущий баланс поинтов.
+                        {formatChannelNames(t('m5_checking_balance_desc'))}
                       </p>
                     </div>
 
                     {/* Что дальше */} 
                     <div className="mt-8 bg-gradient-to-r from-blue-900/20 to-indigo-900/20 p-5 rounded-lg border border-blue-500/10">
                       <h2 className="text-xl font-semibold text-[rgb(var(--color-text-primary))] mb-3 flex items-center">
-                        <span className="text-xl mr-2">➡️</span> Что дальше?
+                        <span className="text-xl mr-2">➡️</span> {t('m5_next_title')}
                       </h2>
                       <p className="text-[rgb(var(--color-text-secondary))]">
-                        Теперь вы знаете, как зарабатывать и тратить OP. В разделе «Активности» вас ждет подробные инструкции по участию в ивентах.
+                        {t('m5_next_desc')}
                       </p>
                     </div>
                   </div>
@@ -954,39 +944,39 @@ function GuideContentComponent({
                   <div className="space-y-8">
                     {/* Вступление */}
                     <p className="text-[rgb(var(--color-text-secondary))] text-lg">
-                      Создание контента — это не только способ проявить креативность, но и прямой путь к эксклюзивным наградам. Здесь вы узнаете, как ваши мемы, твиты могут открыть доступ к роли Content Creator и белому списку (WL).
+                      {t('m6_desc')}
                     </p>
 
                     {/* 1. Роль Content Creator */}
                     <div className="bg-gradient-to-r from-purple-900/30 to-fuchsia-900/30 p-6 rounded-lg border border-purple-500/20">
                       <h2 className="text-xl font-semibold text-[rgb(var(--color-text-primary))] mb-4 flex items-center">
-                        <span className="text-2xl mr-2">1.</span> Роль Content Creator: Ваш творческий статус <span className="text-fuchsia-400 ml-2">🎨</span>
+                        <span className="text-2xl mr-2">1.</span> {t('m6_content_creator_title')} <span className="text-fuchsia-400 ml-2">🎨</span>
                       </h2>
                       
                       <div className="mb-5">
-                        <h3 className="font-semibold text-lg text-[rgb(var(--color-text-primary))] mb-2">Как получить?</h3>
+                        <h3 className="font-semibold text-lg text-[rgb(var(--color-text-primary))] mb-2">{t('m6_how_to_get_title')}</h3>
                         <p className="text-[rgb(var(--color-text-secondary))] mb-3">
-                          Публикуйте контент в специальных каналах:
+                          {t('m6_publish_content_desc')}
                         </p>
                         <ul className="list-disc list-inside space-y-1.5 text-[rgb(var(--color-text-secondary))] pl-2 mb-3">
-                          <li>Мемы → <span className="bg-zinc-800 text-zinc-300 px-1.5 py-0.5 rounded-md font-mono text-sm">#memes</span>.</li>
-                          <li>Твиты → <span className="bg-zinc-800 text-zinc-300 px-1.5 py-0.5 rounded-md font-mono text-sm">#community-tweets</span> (размещайте свои работы в твиттер и публикуйте).</li>
+                          <li>{formatChannelNames(t('m6_memes_channel'))}</li>
+                          <li>{formatChannelNames(t('m6_tweets_channel'))}</li>
                         </ul>
                         <p className="text-[rgb(var(--color-text-secondary))] mb-3">
-                          <span className="font-medium text-[rgb(var(--color-text-primary))]">Качество важнее количества:</span> Модераторы отмечают работы, которые:
+                          <span className="font-medium text-[rgb(var(--color-text-primary))]">{t('m6_quality_over_quantity')}</span>
                         </p>
                         <ul className="list-disc list-inside space-y-1.5 text-[rgb(var(--color-text-secondary))] pl-2">
-                          <li>Оригинальны (не копируют чужие идеи).</li>
-                          <li>Соответствуют тематике Sahara AI.</li>
-                          <li>Вызывают реакцию сообщества (лайки, репосты).</li>
+                          <li>{t('m6_originality')}</li>
+                          <li>{t('m6_relevant_content')}</li>
+                          <li>{t('m6_community_reaction')}</li>
                         </ul>
                       </div>
                       
                       <div>
-                        <h3 className="font-semibold text-lg text-[rgb(var(--color-text-primary))] mb-2">Что дает роль?</h3>
+                        <h3 className="font-semibold text-lg text-[rgb(var(--color-text-primary))] mb-2">{t('m6_role_benefits_title')}</h3>
                          <ul className="list-disc list-inside space-y-1.5 text-[rgb(var(--color-text-secondary))] pl-2">
-                           <li>Упоминания в твитере проекта (ваш пост появляется в заданиях в канале <span className="bg-zinc-800 text-zinc-300 px-1.5 py-0.5 rounded-md font-mono text-sm">#twitter-raids</span>).</li>
-                           <li>Доступ к размещению своих работ в канал <span className="bg-zinc-800 text-zinc-300 px-1.5 py-0.5 rounded-md font-mono text-sm">#artist-content</span>.</li>
+                           <li>{formatChannelNames(t('m6_twitter_mentions_benefit'))}</li>
+                           <li>{formatChannelNames(t('m6_artist_content_access'))}</li>
                          </ul>
                       </div>
                     </div>
@@ -994,50 +984,50 @@ function GuideContentComponent({
                     {/* 2. Контент = Шанс на WL */}
                     <div className="bg-gradient-to-r from-emerald-900/30 to-green-900/30 p-6 rounded-lg border border-emerald-500/20">
                       <h2 className="text-xl font-semibold text-[rgb(var(--color-text-primary))] mb-4 flex items-center">
-                        <span className="text-2xl mr-2">2.</span> Контент = Шанс на WL <span className="text-green-400 ml-2">🎟️</span>
+                        <span className="text-2xl mr-2">2.</span> {t('m6_wl_chance_title')} <span className="text-green-400 ml-2">🎟️</span>
                       </h2>
                       <p className="text-[rgb(var(--color-text-secondary))] mb-4">
-                         Как попасть в белый список через творчество?
+                         {t('m6_wl_chance_desc')}
                       </p>
                       <div className="space-y-4">
                         {/* Участие в #Oasis Stage */}
                         <div className="bg-[rgb(var(--color-dark-base))]/60 p-4 rounded-lg">
                           <h3 className="font-semibold text-lg text-[rgb(var(--color-text-primary))] mb-2 flex items-center">
-                            Участие в #Oasis Stage <span className="text-purple-400 ml-2">🎤</span>
+                            {formatChannelNames(t('m6_oasis_stage_title'))} <span className="text-purple-400 ml-2">🎤</span>
                           </h3>
                            <ul className="list-inside space-y-1.5 text-[rgb(var(--color-text-secondary))] pl-2">
-                             <li>Следите за анонсами в <span className="bg-zinc-800 text-zinc-300 px-1.5 py-0.5 rounded-md font-mono text-sm">#events-announcements</span>.</li>
-                             <li>Участвуем на АМА-сессиях, где разыгрывают среди всех участником определенное количество WL.</li>
+                             <li>{formatChannelNames(t('m6_follow_announcements'))}</li>
+                             <li>{t('m6_ama_sessions')}</li>
                            </ul>
                         </div>
                          {/* Публикуйте работы в Twitter */}
                         <div className="bg-[rgb(var(--color-dark-base))]/60 p-4 rounded-lg">
                           <h3 className="font-semibold text-lg text-[rgb(var(--color-text-primary))] mb-2 flex items-center">
-                             Публикуйте работы в Twitter <span className="text-blue-400 ml-2">🐦</span>
+                             {t('m6_publish_twitter_title')} <span className="text-blue-400 ml-2">🐦</span>
                           </h3>
                           <p className="text-[rgb(var(--color-text-secondary))]">
-                            Отправляйте ссылки на посты в <span className="bg-zinc-800 text-zinc-300 px-1.5 py-0.5 rounded-md font-mono text-sm">#community-tweets</span>.
+                            {formatChannelNames(t('m6_publish_twitter_desc'))}
                           </p>
                         </div>
                          {/* Региональные активности */}
                         <div className="bg-[rgb(var(--color-dark-base))]/60 p-4 rounded-lg">
                           <h3 className="font-semibold text-lg text-[rgb(var(--color-text-primary))] mb-2 flex items-center">
-                             Региональные активности <span className="text-yellow-400 ml-2">🌍</span>
-                    </h3>
+                             {t('m6_regional_activities_title')} <span className="text-yellow-400 ml-2">🌍</span>
+                          </h3>
                           <p className="text-[rgb(var(--color-text-secondary))]">
-                            В <span className="bg-zinc-800 text-zinc-300 px-1.5 py-0.5 rounded-md font-mono text-sm">#ru-чат</span> и других языковых чатах проводятся мини-конкурсы, за победу в которых выдают WL.
+                            {formatChannelNames(t('m6_regional_activities_desc'))}
                           </p>
                         </div>
                       </div>
                     </div>
 
-                    {/* 5. Что дальше? (Нумерация из файла) */} 
+                    {/* Что дальше? */} 
                     <div className="mt-8 bg-gradient-to-r from-blue-900/20 to-indigo-900/20 p-5 rounded-lg border border-blue-500/10">
                       <h2 className="text-xl font-semibold text-[rgb(var(--color-text-primary))] mb-3 flex items-center">
-                        <span className="text-xl mr-2">5.</span> Что дальше?
+                        <span className="text-xl mr-2">➡️</span> {t('m6_next_title')}
                       </h2>
                       <p className="text-[rgb(var(--color-text-secondary))]">
-                        Теперь вы знаете, как контент помогает получить роль и WL. Давайте подведем «Итоги».
+                        {t('m6_next_desc')}
                       </p>
                     </div>
                    </div>
@@ -1046,53 +1036,109 @@ function GuideContentComponent({
                   <div className={`text-[rgb(var(--color-text-secondary))]  ${currentModuleData.isCompletion ? ' prose prose-invert prose-neutral prose-p:my-3 prose-blockquote:my-4 prose-li:my-1 prose-ul:my-3 prose-headings:text-[rgb(var(--color-text-primary))] prose-strong:text-[rgb(var(--color-text-primary))] ' : 'whitespace-pre-line'}`}> 
                     
                     {/* Разделяем текст на части для лучшей стилизации m13 */}
-                    {currentModuleData.isCompletion && moduleDescription.includes('Помните:') ? (
+                    {currentModuleData.isCompletion && (moduleDescription.includes('Помните:') || moduleDescription.includes('Remember:')) ? (
                       <>
-                        {moduleDescription.split('Помните:')[0].split('\n\n').map((paragraph, index) => (
-                          <p key={`intro-${index}`}>{paragraph}</p>
-                        ))}
-                        <blockquote className="mt-6 border-l-2 border-yellow-500/50 pl-4 italic text-yellow-300/80">
-                          <p className="font-semibold text-yellow-300">Помните:</p>
-                          <ul className="list-disc list-outside ml-4 mt-2 space-y-1">
-                            {moduleDescription.split('Помните:')[1].split('\n•').filter(item => item.trim()).map((item, index) => (
-                              <li key={`remember-${index}`}>{item.trim()}</li>
-                      ))}
-                    </ul>
-                        </blockquote>
-                        
-                            <p className="mt-6">Держите этот гайд под рукой, возвращайтесь к нему, если что-то забудете, и — вперёд! Sahara AI ждет ваших достижений.</p>
-                   
+                        {/* Разделители для русского и английского вариантов */}
+                        {moduleDescription.includes('Помните:') ? (
+                          // Русская версия
+                          <>
+                            <div className="p-6">
+                              <div className="flex items-center justify-center mb-6">
+                                <Image 
+                                  src="/gratsBitsy.png" 
+                                  alt="Поздравляем! Bitsy" 
+                                  width={200} 
+                                  height={150} 
+                                  className="mb-6 mx-auto" 
+                                  priority
+                                />
+                              </div>
+                              
+                              {moduleDescription.split('Помните:')[0].split('\n\n').map((paragraph, index) => (
+                                <p key={`intro-${index}`} className="text-[rgb(var(--color-text-secondary))] text-lg text-center mb-4 leading-relaxed">{paragraph}</p>
+                              ))}
+                            </div>
+                            
+                            <div className="bg-gradient-to-r from-amber-900/30 to-yellow-900/30 p-6 rounded-lg border border-amber-500/20 mb-8">
+                              <h3 className="text-xl font-semibold text-yellow-300 mb-4 flex items-center">
+                                <span className="text-xl mr-2">✨</span> Помните:
+                              </h3>
+                              <ul className="list-none space-y-3 ml-2">
+                                {moduleDescription.split('Помните:')[1].split('\n•').filter(item => item.trim()).map((item, index) => (
+                                  <li key={`remember-${index}`} className="flex items-start">
+                                    <span className="text-yellow-400 mr-2 mt-0.5">•</span>
+                                    <span className="text-[rgb(var(--color-text-secondary))]">{item.trim()}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                            
+                            <div className="p-6 text-center">
+                              <p className="text-lg text-[rgb(var(--color-text-secondary))] font-medium mb-2">
+                                {t('m13_p')}
+                              </p>
+                              <div className="flex justify-center mt-4 space-x-2">
+                                <span className="text-2xl">🌟</span>
+                                <span className="text-2xl">🚀</span>
+                                <span className="text-2xl">💎</span>
+                              </div>
+                            </div>
+                          </>
+                        ) : (
+                          // Английская версия
+                          <>
+                            <div className="p-6 ">
+                              <div className="flex items-center justify-center mb-6">
+                                <Image 
+                                  src="/gratsBitsy.png" 
+                                  alt="Congratulations! Bitsy" 
+                                  width={200} 
+                                  height={150} 
+                                  className="mb-6 mx-auto" 
+                                  priority
+                                />
+                              </div>
+                              
+                              {moduleDescription.split('Remember:')[0].split('\n\n').map((paragraph, index) => (
+                                <p key={`intro-${index}`} className="text-[rgb(var(--color-text-secondary))] text-lg text-center mb-4 leading-relaxed">{paragraph}</p>
+                              ))}
+                            </div>
+                            
+                            <div className="bg-gradient-to-r from-amber-900/30 to-yellow-900/30 p-6 rounded-lg border border-amber-500/20 mb-8">
+                              <h3 className="text-xl font-semibold text-yellow-300 mb-4 flex items-center">
+                                <span className="text-xl mr-2">✨</span> Remember:
+                              </h3>
+                              <ul className="list-none space-y-3 ml-2">
+                                {moduleDescription.split('Remember:')[1].split('\n•').filter(item => item.trim()).map((item, index) => (
+                                  <li key={`remember-${index}`} className="flex items-start">
+                                    <span className="text-yellow-400 mr-2 mt-0.5">•</span>
+                                    <span className="text-[rgb(var(--color-text-secondary))]">{item.trim()}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                            
+                            <div className="p-6 text-center">
+                              <p className="text-lg text-[rgb(var(--color-text-secondary))] font-medium mb-2">
+                                {t('m13_p')}
+                              </p>
+                              <div className="flex justify-center mt-4 space-x-2">
+                                <span className="text-2xl">🌟</span>
+                                <span className="text-2xl">🚀</span>
+                                <span className="text-2xl">💎</span>
+                              </div>
+                            </div>
+                          </>
+                        )}
                       </>
                     ) : (
-                      // Обычный рендеринг для других модулей или если нет "Помните:"
+                      // Обычный рендеринг для других модулей или если нет "Помните:/Remember:"
                       moduleDescription.split('\n\n').map((paragraph, index) => (
                          <p key={index}>{paragraph}</p>
                       ))
                     )}
 
-                    {/* КНОПКИ ДЛЯ ЗАВЕРШАЮЩЕГО МОДУЛЯ (m13) */}
-                    {currentModuleData.isCompletion && (
-                       <div className="mt-10 flex flex-wrap gap-4 justify-center">
-                         <a href="#discord" target="_blank" rel="noopener noreferrer" className="cursor-pointer">
-                           <Button variant="outline" className="bg-indigo-600/10 hover:bg-indigo-600/20 border-indigo-500/30 text-indigo-300 hover:text-indigo-200">
-                             {/* Иконка Discord */} 
-                             Discord
-                           </Button>
-                         </a>
-                         <a href="#website" target="_blank" rel="noopener noreferrer" className="cursor-pointer">
-                           <Button variant="outline" className="bg-emerald-600/10 hover:bg-emerald-600/20 border-emerald-500/30 text-emerald-300 hover:text-emerald-200">
-                              <Globe className="h-4 w-4 mr-2" />
-                             Сайт
-                           </Button>
-                         </a>
-                         <a href="#twitter" target="_blank" rel="noopener noreferrer" className="cursor-pointer">
-                           <Button variant="outline" className="bg-sky-600/10 hover:bg-sky-600/20 border-sky-500/30 text-sky-300 hover:text-sky-200">
-                              {/* Иконка Twitter */} 
-                             Twitter
-                           </Button>
-                         </a>
-                       </div>
-                    )}
+                 
                   </div>
                 )}
                 

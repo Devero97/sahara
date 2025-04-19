@@ -12,9 +12,10 @@ export type CharacterRole =
 
 interface CharacterProps {
   role?: CharacterRole;
+  getLocalizedRole?: (role: string) => string;
 }
 
-export const Character = ({ role = "Новичок" }: CharacterProps) => {
+export const Character = ({ role = "Новичок", getLocalizedRole }: CharacterProps) => {
   const getImagePath = () => {
     switch (role) {
       case "Бронза":
@@ -30,6 +31,8 @@ export const Character = ({ role = "Новичок" }: CharacterProps) => {
     }
   };
 
+  const displayRole = getLocalizedRole ? getLocalizedRole(role) : role;
+
   return (
     <AnimatePresence mode="wait">
       <motion.div
@@ -40,7 +43,7 @@ export const Character = ({ role = "Новичок" }: CharacterProps) => {
       >
         <Image
           src={getImagePath()}
-          alt={role}
+          alt={displayRole}
           width={96}
           height={96}
           className="mx-auto"

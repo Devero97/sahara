@@ -2,16 +2,11 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { useTranslations } from "next-intl";
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const t = useTranslations("Header.nav");
-
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  // Удаляем неиспользуемое состояние
+  // const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <header className="w-full  ">

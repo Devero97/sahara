@@ -14,6 +14,11 @@ import { useTranslations } from "next-intl";
 
 const XpCalculator: React.FC = () => {
   const t = useTranslations("GuideContent");
+  
+  // Создаем типизированную обертку для функции перевода, соответствующую интерфейсам компонентов
+  const tWrapper = (key: string, params?: Record<string, unknown>): string => {
+    return t(key, params as Record<string, string | number | Date>);
+  };
 
   const {
     inputValue,
@@ -34,6 +39,17 @@ const XpCalculator: React.FC = () => {
     }
   };
 
+  // Функция для получения локализованного названия роли
+  const getLocalizedRole = (role: string) => {
+    try {
+      return t(`calculator.roles.${role.toLowerCase()}`);
+    } catch {
+      return role;
+    }
+  };
+
+  const defaultRole = "Новичок";
+
   return (
     <div className="relative flex items-center justify-center">
       <motion.div
@@ -45,8 +61,9 @@ const XpCalculator: React.FC = () => {
         <div className="flex justify-center">
           <AnimatePresence mode="wait">
             <Character
-              key={result?.currentRole || "Новичок"}
-              role={result?.currentRole ?? "Новичок"}
+              key={result?.currentRole || defaultRole}
+              role={result?.currentRole ?? defaultRole}
+              getLocalizedRole={getLocalizedRole}
             />
           </AnimatePresence>
         </div>
@@ -93,7 +110,7 @@ const XpCalculator: React.FC = () => {
             default: t("calculator.calculate"),
           }}
           clearText={t("calculator.reset")}
-          className="mt-4" // дополнительный класс при необходимости
+          className="mt-4"
         />
 
         <AnimatePresence>
@@ -103,26 +120,26 @@ const XpCalculator: React.FC = () => {
               initial={animations.expand.initial}
               animate={animations.expand.animate}
               exit={{ opacity: 0, height: 0, transition: { duration: 0.3 } }}
-              className="bg-[#2D3839] rounded-lg border border-[#3A4A4B] overflow-hidden mt-4"
+              className=" mt-4"
             >
-              <div className="p-6">
+              <div className="">
                 <XpProgressBar
                   currentXp={result.currentXp}
                   nextLevelXp={result.nextLevelXp}
                   currentLevel={result.currentLevel}
                   progress={result.progress}
                   messagesToNextLevel={result.messagesToNextLevel}
-                  t={t}
+                  t={tWrapper}
                 />
 
                 <RoleBadge
                   role={result.currentRole}
-                  title={result.currentRole}
+                  title={getLocalizedRole(result.currentRole)}
                   iconPath={
                     roleIcons[result.currentRole as keyof typeof roleIcons]
                   }
                   className="mb-4"
-                  t={t}
+                  t={tWrapper}
                 />
 
                 <div className="space-y-4">
@@ -131,7 +148,7 @@ const XpCalculator: React.FC = () => {
                       key={`${role.level}-${role.role}`}
                       {...role}
                       iconPath={roleIcons[role.role as keyof typeof roleIcons]}
-                      t={t}
+                      t={tWrapper}
                     />
                   ))}
                 </div>
