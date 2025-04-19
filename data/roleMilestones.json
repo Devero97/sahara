@@ -1,0 +1,6 @@
+[
+  { "level": 25, "role": "Бронза", "color": "#cd7f32" },
+  { "level": 50, "role": "Серебро", "color": "#c0c0c0" },
+  { "level": 75, "role": "Золото", "color": "#ffd700" },
+  { "level": 100, "role": "Платина", "color": "#7EC0F2" }
+]

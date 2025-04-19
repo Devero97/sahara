@@ -6,103 +6,13 @@ import ServerPanel from './ServerPanel';
 import GuideContent from './GuideContent';
 import IntroductoryQuest from './IntroductoryQuest';
 import { toast } from "sonner";
-import { CheckpointData } from './CheckpointPopover';
 import { categories } from './ServerPanel'; // Импортируем categories
 
 // КОНСТАНТЫ
 const LOCAL_STORAGE_KEYS = {
   CURRENT_STEP: 'discordGuide_currentStep',
-  COMPLETED_CHECKPOINTS: 'discordGuide_completedCheckpoints',
   INTRO_COMPLETED: 'discordGuide_introCompleted', // Ключ для статуса интро
 };
-
-// НОВЫЕ ДАННЫЕ ЧЕКПОИНТОВ (с обновленными moduleId)
-const CHECKPOINTS: CheckpointData[] = [
-  { // Чекпоинт 1 -> Модуль m1
-    id: 'cp1', 
-    moduleId: 'm1', 
-    questionKey: 'cp1_q', 
-    options: [
-      { id: 'cp1_o1', textKey: 'cp1_o1_text', isCorrect: false },
-      { id: 'cp1_o2', textKey: 'cp1_o2_text', isCorrect: true }, // Правильный
-      { id: 'cp1_o3', textKey: 'cp1_o3_text', isCorrect: false },
-      { id: 'cp1_o4', textKey: 'cp1_o4_text', isCorrect: false },
-    ],
-    explanationKey: 'cp1_exp'
-  },
-  { // Чекпоинт 2 -> Модуль m2
-    id: 'cp2', 
-    moduleId: 'm2',
-    questionKey: 'cp2_q',
-    options: [
-      { id: 'cp2_o1', textKey: 'cp2_o1_text', isCorrect: false },
-      { id: 'cp2_o2', textKey: 'cp2_o2_text', isCorrect: false },
-      { id: 'cp2_o3', textKey: 'cp2_o3_text', isCorrect: true }, // Правильный
-      { id: 'cp2_o4', textKey: 'cp2_o4_text', isCorrect: false },
-    ],
-    explanationKey: 'cp2_exp'
-  },
-  { // Чекпоинт 3 -> Модуль m5 (Про OP)
-    id: 'cp3',
-    moduleId: 'm5', 
-    questionKey: 'cp3_q',
-    options: [
-      { id: 'cp3_o1', textKey: 'cp3_o1_text', isCorrect: false },
-      { id: 'cp3_o2', textKey: 'cp3_o2_text', isCorrect: false },
-      { id: 'cp3_o3', textKey: 'cp3_o3_text', isCorrect: false },
-      { id: 'cp3_o4', textKey: 'cp3_o4_text', isCorrect: true }, // Правильный
-    ],
-    explanationKey: 'cp3_exp'
-  },
-  { // Чекпоинт 4 -> Модуль m8 (Про контент)
-    id: 'cp4',
-    moduleId: 'm8',
-    questionKey: 'cp4_q',
-    options: [
-      { id: 'cp4_o1', textKey: 'cp4_o1_text', isCorrect: false },
-      { id: 'cp4_o2', textKey: 'cp4_o2_text', isCorrect: false },
-      { id: 'cp4_o3', textKey: 'cp4_o3_text', isCorrect: true }, // Правильный
-      { id: 'cp4_o4', textKey: 'cp4_o4_text', isCorrect: false },
-    ],
-    explanationKey: 'cp4_exp'
-  },
-  { // Чекпоинт 5 -> Модуль m10 (Про WL)
-    id: 'cp5',
-    moduleId: 'm10',
-    questionKey: 'cp5_q',
-    options: [
-      { id: 'cp5_o1', textKey: 'cp5_o1_text', isCorrect: false },
-      { id: 'cp5_o2', textKey: 'cp5_o2_text', isCorrect: false },
-      { id: 'cp5_o3', textKey: 'cp5_o3_text', isCorrect: true }, // Правильный
-      { id: 'cp5_o4', textKey: 'cp5_o4_text', isCorrect: false },
-    ],
-    explanationKey: 'cp5_exp'
-  },
-  { // Чекпоинт 6 -> Модуль m9 (Про общение)
-    id: 'cp6',
-    moduleId: 'm9',
-    questionKey: 'cp6_q',
-    options: [
-      { id: 'cp6_o1', textKey: 'cp6_o1_text', isCorrect: false },
-      { id: 'cp6_o2', textKey: 'cp6_o2_text', isCorrect: false },
-      { id: 'cp6_o3', textKey: 'cp6_o3_text', isCorrect: true }, // Правильный
-      { id: 'cp6_o4', textKey: 'cp6_o4_text', isCorrect: false },
-    ],
-    explanationKey: 'cp6_exp'
-  },
-  { // Чекпоинт 7 -> Модуль m11 (Про помощь)
-    id: 'cp7',
-    moduleId: 'm11',
-    questionKey: 'cp7_q',
-    options: [
-      { id: 'cp7_o1', textKey: 'cp7_o1_text', isCorrect: false },
-      { id: 'cp7_o2', textKey: 'cp7_o2_text', isCorrect: false },
-      { id: 'cp7_o3', textKey: 'cp7_o3_text', isCorrect: true }, // Правильный
-      { id: 'cp7_o4', textKey: 'cp7_o4_text', isCorrect: false },
-    ],
-    explanationKey: 'cp7_exp'
-  },
-];
 
 // --- ХУКИ ДЛЯ LOCALSTORAGE ---
 function usePersistentState<T>(key: string, defaultValue: T): [T, Dispatch<SetStateAction<T>>] {
@@ -184,7 +94,6 @@ export default function DiscordGuide() {
   const [isIntroCompleted, setIsIntroCompleted] = usePersistentState<boolean>(LOCAL_STORAGE_KEYS.INTRO_COMPLETED, false);
   // Ставим ID первого модуля (m1) по умолчанию
   const [currentModuleId, setCurrentModuleId] = usePersistentState<string>(LOCAL_STORAGE_KEYS.CURRENT_STEP, 'm1'); 
-  const [completedCheckpoints, addCompletedCheckpoint] = usePersistentSetState(LOCAL_STORAGE_KEYS.COMPLETED_CHECKPOINTS, new Set<string>());
   const [activeModuleId, setActiveModuleId] = useState<string | null>(currentModuleId);
 
   // === ЭФФЕКТЫ ===
@@ -197,14 +106,9 @@ export default function DiscordGuide() {
     setCurrentModuleId(moduleId);
   };
 
-  const markCheckpointComplete = (checkpointId: string) => {
-    addCompletedCheckpoint(checkpointId);
-    toast.success("Проверка пройдена!");
-  };
-
   const handleCompleteIntro = () => {
     setIsIntroCompleted(true); 
-    toast.info("Вводный квест завершен! Добро пожаловать в полный гайд.");
+    toast.success("Вводный квест завершен! Добро пожаловать в полный гайд.");
     setCurrentModuleId('m1');
     setActiveModuleId('m1');
   };
@@ -243,7 +147,7 @@ export default function DiscordGuide() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="flex py-[20px] bg-[rgb(var(--color-dark-base))]"
+      className="flex py-[20px]"
     >
       <ServerPanel 
         activeModuleId={activeModuleId}
@@ -257,9 +161,6 @@ export default function DiscordGuide() {
       >
         <GuideContent 
           currentModuleId={activeModuleId ?? 'm1'}
-          completedCheckpoints={completedCheckpoints}
-          checkpoints={CHECKPOINTS}
-          onCheckpointComplete={markCheckpointComplete}
           onModulePrev={handleModulePrev}
           onModuleNext={handleModuleNext}
           isFirstModule={currentModuleIndex === 0}

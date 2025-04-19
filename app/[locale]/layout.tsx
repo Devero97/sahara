@@ -4,27 +4,31 @@ import {routing} from '@/i18n/routing';
 import "./globals.css";
 import Header from '../../components/Header';
 import { Toaster } from '@/components/ui/sonner';
+import { getMessages } from 'next-intl/server';
 
 export default async function LocaleLayout({
   children,
   params
 }: {
   children: React.ReactNode;
-  params: Promise<{locale: string}>;
+  params: {locale: string};
 }) {
   // Ensure that the incoming `locale` is valid
-  const {locale} = await params;
-  if (!hasLocale(routing.locales, locale)) {
+  if (!hasLocale(routing.locales, params.locale)) {
     notFound();
   }
  
+  // Providing all messages to the client
+  // side is the easiest way to get started
+  const messages = await getMessages();
+
   return (
-    <html lang={locale}>
-      <body className={`bg-background text-primary  bg-top bg-no-repeat flex mx-auto max-w-7xl flex-col  `}>
-           <NextIntlClientProvider>
+    <html lang={params.locale}>
+      <body className={`text-primary bg-[url('/fon.png')] bg-top   bg-cover flex mx-auto max-w-7xl flex-col min-h-screen`}>
+           <NextIntlClientProvider locale={params.locale} messages={messages}>
           <Header />          
           {children}
-          <Toaster position="bottom-left" richColors />
+          <Toaster position="bottom-right" richColors />
           </NextIntlClientProvider>
       </body>
     </html>

@@ -1,19 +1,17 @@
 import createMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
 
-// Создаем базовый middleware
+// Создаем middleware на основе конфигурации маршрутизации
 export const middleware = createMiddleware({
-  ...routing,
+  // Используем существующую конфигурацию из routing
+  locales: routing.locales,
+  defaultLocale: routing.defaultLocale,
   localePrefix: 'as-needed',
   localeDetection: false,
-  pathnames: {
-    '/': '/',
-    '/en': '/en',
-    '/ru': '/ru',
-    '/*': '/*'
-  }
+  // Унифицируем pathnames с конфигурацией в routing.ts
+  pathnames: routing.pathnames
 });
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|logo.svg|pattern.png|body.svg|head.svg|hand1.svg|hand2.svg|foods.svg).*)"],
+  matcher: ['/((?!api|_next/static|_next/image|.*\\..*).*)'],
 };

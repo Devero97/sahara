@@ -5,8 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import {
   Hash, // Оставляем на всякий случай
-  DoorOpen, Info, Users, TrendingUp, Coins, ShoppingCart, TerminalSquare,
-  Calendar, Brush, MessageSquare, Ticket, ShieldCheck, Newspaper, LayoutList,
+  DoorOpen, Info, Users, TrendingUp, Coins, Brush, LayoutList,
 } from 'lucide-react';
 import { cn } from "@/lib/utils";
 
@@ -14,7 +13,7 @@ interface Module {
   id: string;
   nameKey: string;
   category: string;
-  icon: React.ElementType; // Тип для React компонента
+  icon: React.ElementType; 
 }
 
 interface Category {
@@ -39,25 +38,13 @@ export const categories: Category[] = [
     modules: [
       { id: 'm4', nameKey: 'm4_nav', category: 'cat_progress', icon: TrendingUp },
       { id: 'm5', nameKey: 'm5_nav', category: 'cat_progress', icon: Coins },
-      { id: 'm6', nameKey: 'm6_nav', category: 'cat_progress', icon: TerminalSquare }, // Или ShoppingCart
+      { id: 'm6', nameKey: 'm6_nav', category: 'cat_progress', icon: Brush },
     ],
   },
-  // Категория 3: Активности
-  {
-    id: 'cat_activities', nameKey: 'cat_activities',
-    modules: [
-      { id: 'm7', nameKey: 'm7_nav', category: 'cat_activities', icon: Calendar },
-      { id: 'm8', nameKey: 'm8_nav', category: 'cat_activities', icon: Brush },
-      { id: 'm9', nameKey: 'm9_nav', category: 'cat_activities', icon: MessageSquare },
-      { id: 'm10', nameKey: 'm10_nav', category: 'cat_activities', icon: Ticket },
-    ],
-  },
-    // Категория 4: Информация
+  // Категория 4: Информация
   {
     id: 'cat_info', nameKey: 'cat_info',
     modules: [
-      { id: 'm11', nameKey: 'm11_nav', category: 'cat_info', icon: ShieldCheck },
-      { id: 'm12', nameKey: 'm12_nav', category: 'cat_info', icon: Newspaper },
       { id: 'm13', nameKey: 'm13_nav', category: 'cat_info', icon: LayoutList },
     ],
   },
@@ -112,42 +99,46 @@ function ServerPanelComponent({
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.3 }}
-      className="w-64 mr-3 flex items-start"
-    >
-      <div className="flex-1 overflow-y-auto p-2">
-        <AnimatePresence>
-          {visibleCategories.map((category, index) => (
-            <motion.div
-              key={category.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="mb-4 relative"
-            >
-              <motion.div 
-                className="px-2 py-1 mb-2"
-                whileHover={{ x: 5 }}
-                transition={{ type: "spring", stiffness: 300 }}
+    // Оборачиваем в div для sticky позиционирования
+    <div className="sticky top-0 max-h-screen flex-shrink-0 w-64 mr-3 -mb-[20px]">
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.3 }}
+        // w-64 и mr-3 перенесены на родительский div
+        className="flex items-start"
+      >
+        <div className="flex-1 p-2">
+          <AnimatePresence>
+            {visibleCategories.map((category, index) => (
+              <motion.div
+                key={category.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="mb-4 relative"
               >
-                <span className="text-[rgb(var(--color-text-muted))] text-xs font-semibold uppercase tracking-wider">
-                  {t(category.nameKey)}
-                </span>
-              </motion.div>
+                <motion.div 
+                  className="px-2 py-1 mb-2"
+                  whileHover={{ x: 5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <span className="text-[rgb(var(--color-text-muted))] text-xs font-semibold uppercase tracking-wider">
+                    {t(category.nameKey)}
+                  </span>
+                </motion.div>
 
-              <div>
-                {category.modules.map((module) => {
-                  return renderModule(module); 
-                })}
-              </div>
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </div>
-    </motion.div>
+                <div>
+                  {category.modules.map((module) => {
+                    return renderModule(module); 
+                  })}
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
+      </motion.div>
+    </div>
   );
 }
 

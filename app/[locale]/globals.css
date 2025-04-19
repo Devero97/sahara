@@ -28,6 +28,9 @@
   }
 }
 @layer base {
+  .bg-yellow {
+    background-color: rgb(var(--color-accent-yellow));
+  }
   .bg-background {
     background-color: rgb(var(--color-dark-base));
   }

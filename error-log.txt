@@ -1,0 +1,36 @@
+Вероятные причины ошибки в XP-калькуляторе:
+
+1. Отсутствие параметра t в XpProgressBar при вызове:
+   Компонент XpProgressBar требует параметр t, но он не передается в index.tsx
+
+2. Отсутствие параметра t в RoleMilestoneCard при вызове:
+   Компонент RoleMilestoneCard требует параметр t, но он не передается в index.tsx
+
+3. Ошибка в useXpCalculator:
+   Возможно, не обрабатывается какой-то особый случай при расчете XP
+
+4. Отладочные логи:
+   console.log в XpProgressBar могут вызывать ошибки при попытке логирования сложных объектов
+
+Решение:
+1. Удалить отладочные логи в XpProgressBar
+2. Добавить параметр t в компоненты XpProgressBar и RoleMilestoneCard в index.tsx:
+   ```tsx
+   <XpProgressBar
+     currentXp={result.currentXp}
+     nextLevelXp={result.nextLevelXp}
+     currentLevel={result.currentLevel}
+     progress={result.progress}
+     messagesToNextLevel={result.messagesToNextLevel}
+     t={t}
+   />
+   ```
+   
+   ```tsx
+   <RoleMilestoneCard
+     key={`${role.level}-${role.role}`}
+     {...role}
+     iconPath={roleIcons[role.role as keyof typeof roleIcons]}
+     t={t}
+   />
+   ``` 
